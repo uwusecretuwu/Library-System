@@ -1,5 +1,7 @@
 package project_0;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 public class Splashscreen{
@@ -19,6 +21,7 @@ public class Splashscreen{
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setVisible(true);
+		frame.getContentPane().setBackground(new Color(142, 217, 72));
 		
 		fill();
 				

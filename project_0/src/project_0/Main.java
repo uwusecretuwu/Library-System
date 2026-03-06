@@ -8,7 +8,7 @@ public class Main {
 	window.setVisible(true);
 	//if(Splash.progressbarisdone == true) {
 		//window.isvisible = true;
-	//}
+	
 	
 	}
 
