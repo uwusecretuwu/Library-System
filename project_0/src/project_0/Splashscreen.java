@@ -9,6 +9,7 @@ public class Splashscreen{
 	boolean progressbarisdone = false;
 	JFrame frame = new JFrame();
 	JProgressBar PBar = new JProgressBar();
+
 	public Splashscreen() {
 		PBar.setValue(0); // the value is converted to percentage from 0% to 100%
 		PBar.setBounds(50,150,400,25);
@@ -22,9 +23,8 @@ public class Splashscreen{
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(new Color(142, 217, 72));
-		
-		fill();
 				
+		fill();
 	}
 	//Progress bar
 	public void fill() {

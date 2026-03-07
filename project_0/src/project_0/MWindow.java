@@ -9,73 +9,68 @@ public class MWindow extends JFrame implements ActionListener {
 	// Declaration
 	// Menu
 	JMenuBar Menubar;
-	JMenu file;
-	JMenu edit;
-	// Panels
-	JPanel PMenubar;
-
-	String[] cars = { "item1", "item2", "item3" };
+	JButton butt;
+	JButton btn1, btn2, btn3;
+	int counter = 1;
+	JPanel header, ButtonHolders;
+	JLayeredPane LPane;
+	ImageIcon bell;
 
 	public MWindow() {
-		//Main JFrame window
+		// Main JFrame window
 		this.setTitle("Alexandria");
 		this.setSize(500, 500);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // if we close the main window all other windows will close
 		this.setLocationRelativeTo(null);
-		
-		//Panels
-		
-		//MenuBar
-		Menubar = new JMenuBar();
-		UIManager.put("MenuBar.background", new Color(142, 217, 72));// To customize Color of MenuBar
-		file = new JMenu("file");
-		edit = new JMenu("edit");
-		
-		
-		//Adding things to the Window
-		Menubar.add(file);
-		Menubar.add(edit);
-		this.setJMenuBar(Menubar); // makes the actual bar in the menu bar visible
-		
-		//Method Implementations
-		menumaker(cars, file);
+		this.setExtendedState(MAXIMIZED_BOTH);
 
+		// Panels
+		LPane = new JLayeredPane();
+		LPane.setBounds(350, 35, 100, 100);
+		LPane.setVisible(false);
+
+		header = new JPanel();
+		header.setBounds(0, 0, 1920, 35);
+		header.setBackground(new Color(170, 229, 118));
+		header.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+		ButtonHolders = new JPanel();
+		ButtonHolders.setBounds(400, 200, 1000, 500);
+		ButtonHolders.setBackground(new Color(200, 255, 118));
+		ButtonHolders.setLayout(new FlowLayout(FlowLayout.LEFT));
+		ButtonMaker btns = new ButtonMaker();
+
+		btns.buttonmaker("Borrowed Books", ButtonHolders, 200, 200, 255, 255, 255);
+		btns.buttonmaker("Book Requests", ButtonHolders, 200, 200, 255, 255, 255);
+		btns.buttonmaker("place holder", ButtonHolders, 200, 200, 255, 255, 255);
+		btns.buttonmaker("place holder", ButtonHolders, 200, 200, 255, 255, 255);
+
+		butt = new JButton("notifications");
+		butt.setBounds(350, 5, 125, 25);
+		butt.addActionListener(this);
+
+		// Adding things to the Window
+
+		header.add(butt);
+		this.add(ButtonHolders);
+		this.add(LPane);
+		this.add(header);
+
+		// Method Implementations
 	}
-
-	public void menumaker(String[] menuitem, JMenu menu) {
-
-		// this is a foreach loop
-		// for each String in menuitem repeat that many times
-		for (String item : menuitem) {
-			JMenuItem menuitemcontent = new JMenuItem(item);
-			menu.add(menuitemcontent);
-			menuitemcontent.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (e.getSource().equals(menuitem[0])) {
-						System.out.println(e.getSource()); // out of service for now
-					}
-				}
-			});// actionlistener ends here
-
-		}
-
-	}
-
-	/*
-	 * public void buttonmaker(String btn1, int btnsize) { JButton Button = new
-	 * JButton(btn1); Button.setSize(btnsize, btnsize); PMenubar.add(Button);
-	 * Button.addActionListener(new ActionListener() { public void
-	 * actionPerformed(ActionEvent e) {
-	 * 
-	 * if (e.getSource().equals(Button)) { System.out.println("clicked"); } } });
-	 * 
-	 * }
-	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if (e.getSource().equals(butt)) {
+			counter++;
+			if (counter == 1) {
+				LPane.setVisible(true);
+			} else {
+				counter = 0;
+				LPane.setVisible(false);
+			}
+		}
 	}
 
 }
