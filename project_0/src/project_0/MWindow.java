@@ -41,10 +41,9 @@ public class MWindow extends JFrame implements ActionListener {
 		ButtonHolders.setLayout(new FlowLayout(FlowLayout.LEFT));
 		ButtonMaker btns = new ButtonMaker();
 
+		
 		btns.buttonmaker("Borrowed Books", ButtonHolders, 200, 200, 255, 255, 255);
 		btns.buttonmaker("Book Requests", ButtonHolders, 200, 200, 255, 255, 255);
-		btns.buttonmaker("place holder", ButtonHolders, 200, 200, 255, 255, 255);
-		btns.buttonmaker("place holder", ButtonHolders, 200, 200, 255, 255, 255);
 
 		butt = new JButton("notifications");
 		butt.setBounds(350, 5, 125, 25);
