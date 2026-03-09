@@ -18,7 +18,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 	JButton notification_button;
 
-	JPanel header;
+	JPanel header,header_buttons;
 	ImageIcon bell;
 
 	public MWindow() {
@@ -32,9 +32,15 @@ public class MWindow extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(almond_cream);
 
 		// Panels
-		header = new JPanel(new GridLayout(1,0,100,0));
+		GridBagConstraints grid_constraints = new GridBagConstraints();
+		GridBagLayout grid_bag = new GridBagLayout();
+		
+		
+		header = new JPanel(grid_bag);
 		header.setSize(0, 200);
 		header.setBackground(ebony);
+		header_buttons = new JPanel();
+		
 
 		ButtonMaker borrowed_books = new ButtonMaker("Images/book.png");
 		borrowed_books.buttonmaker("Borrowed Books", header, camel);

@@ -21,11 +21,13 @@ public class ButtonMaker {
 		JButton button = new JButton();
 		ImageIcon button_image = new ImageIcon(new ImageIcon(this.img, name).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
 		
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.insets = new Insets(0,100,0,100);
 		button.setLayout(new FlowLayout());
 		button.setIcon(button_image);
 		button.setBorder(BorderFactory.createLineBorder(color,5));
 		button.setForeground(Color.GREEN); // This is a text color
-		panel.add(button);
+		panel.add(button, constraints);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == button) {
