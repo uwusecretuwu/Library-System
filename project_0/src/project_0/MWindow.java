@@ -32,7 +32,7 @@ public class MWindow extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(almond_cream);
 
 		// Panels
-		header = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		header = new JPanel(new GridLayout());
 		header.setSize(0, 200);
 		header.setBackground(ebony);
 
