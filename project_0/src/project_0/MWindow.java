@@ -7,67 +7,71 @@ import javax.swing.*;
 public class MWindow extends JFrame implements ActionListener {
 
 	// Declaration
-	// Menu
-	JMenuBar Menubar;
-	JButton butt;
-	JButton btn1, btn2, btn3;
+	
 	int counter = 1;
-	JPanel header, ButtonHolders;
-	JLayeredPane LPane;
+	
+	Color coffee_bean = new Color(127, 85, 57);
+	Color camel = new Color(166, 138, 100);
+	Color almond_cream = new Color(237, 224, 212);
+	Color dusty_olive = new Color(101, 109, 74);
+	Color ebony = new Color(65, 72, 51);
+	
+	JButton notification_button;
+	
+	JPanel header;
 	ImageIcon bell;
+
 
 	public MWindow() {
 		// Main JFrame window
 		this.setTitle("Alexandria");
-		this.setSize(500, 500);
-		this.setLayout(null);
+		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // if we close the main window all other windows will close
 		this.setLocationRelativeTo(null);
+		this.setSize(new Dimension(500,500));
 		this.setExtendedState(MAXIMIZED_BOTH);
-
-		// Panels
-		LPane = new JLayeredPane();
-		LPane.setBounds(350, 35, 100, 100);
-		LPane.setVisible(false);
-
-		header = new JPanel();
-		header.setBounds(0, 0, 1920, 35);
-		header.setBackground(new Color(170, 229, 118));
-		header.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
-		ButtonHolders = new JPanel();
-		ButtonHolders.setBounds(400, 200, 1000, 500);
-		ButtonHolders.setBackground(new Color(200, 255, 118));
-		ButtonHolders.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ButtonMaker btns = new ButtonMaker();
-
+		this.getContentPane().setBackground(almond_cream);
 		
-		btns.buttonmaker("Borrowed Books", ButtonHolders, 200, 200, 255, 255, 255);
-		btns.buttonmaker("Book Requests", ButtonHolders, 200, 200, 255, 255, 255);
-
-		butt = new JButton("notifications");
-		butt.setBounds(350, 5, 125, 25);
-		butt.addActionListener(this);
+		// Panels
+		header = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		header.setSize(0, 200);
+		header.setBackground(ebony);
+		
+		JPanel left = new JPanel();
+		left.setPreferredSize(new Dimension(450,0));
+		left.setBackground(new Color(102, 24, 7));
+		
+		ButtonMaker notification_button = new ButtonMaker("Images/notification_bell.png");
+		notification_button.buttonmaker("Notification Button", header, camel);
+		ButtonMaker borrowed_books = new ButtonMaker("Images/book.png");
+		borrowed_books.buttonmaker("Borrowed Books", header, camel);
+		ButtonMaker requested_books = new ButtonMaker("Images/requestedbooks.png");
+		requested_books.buttonmaker("Request Books", header, camel);
+		ButtonMaker History = new ButtonMaker("Images/requestedbooks.png");
+		requested_books.buttonmaker("History", header, camel);
+		
+		
 
 		// Adding things to the Window
 
-		header.add(butt);
-		this.add(ButtonHolders);
-		this.add(LPane);
-		this.add(header);
+		this.add(header,BorderLayout.NORTH);
+		this.add(left, BorderLayout.WEST);
+		this.repaint();
 
 		// Method Implementations
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(butt)) {
+		if (e.getSource().equals(notification_button)) {
 			counter++;
 			if (counter == 1) {
-				LPane.setVisible(true);
+				System.out.println("work");
+
 			} else {
+				System.out.print("not");
 				counter = 0;
-				LPane.setVisible(false);
+
 			}
 		}
 	}

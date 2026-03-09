@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 	MWindow window = new MWindow();
-	//Splashscreen Splash = new Splashscreen();
+	//splash_screen Splash = new splash_screen();
 	window.setVisible(true);
 	//if(Splash.progressbarisdone == true) {
 		//window.isvisible = true;
