@@ -24,6 +24,7 @@ public class ButtonMaker {
 		button.setLayout(new FlowLayout());
 		button.setIcon(button_image);
 		button.setBorder(BorderFactory.createLineBorder(color,5));
+		button.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		button.setForeground(Color.GREEN); // This is a text color
 		panel.add(button);
 		button.addActionListener(new ActionListener() {
