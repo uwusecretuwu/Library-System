@@ -38,7 +38,8 @@ public class MWindow extends JFrame implements ActionListener {
 		
 		header = new JPanel(grid_bag);
 		header.setSize(0, 200);
-		header.setBackground(ebony);
+		header.setBackground(dusty_olive);
+		header.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, ebony));
 		header_buttons = new JPanel();
 		
 
@@ -53,9 +54,31 @@ public class MWindow extends JFrame implements ActionListener {
 		ButtonMaker notification_button = new ButtonMaker("Images/notification_bell.png");
 		notification_button.buttonmaker("Notification Button", header, camel);
 
-		JPanel left_container = new JPanel();
+		JPanel left_container = new JPanel(null);
 		left_container.setPreferredSize(new Dimension(450, 0));
-		left_container.setBackground(new Color(102, 24, 7));
+		left_container.setBackground(coffee_bean);
+		left_container.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, new Color(110, 50, 45)));
+		
+		JTextField current_book = new JTextField("Title");
+		current_book.setBounds(120,20,200,50);
+		current_book.setHorizontalAlignment(JTextField.CENTER);
+		current_book.setPreferredSize(new Dimension(250,50));
+		current_book.setLayout(new FlowLayout());
+		current_book.setFont(new Font("Consolas", Font.ROMAN_BASELINE, 30));
+		current_book.setEditable(false);
+		current_book.setCaretColor(dusty_olive);
+		current_book.setBackground(dusty_olive);
+		
+		JPanel book_panel = new JPanel();
+		book_panel.setBounds(20,100,410,500);
+		book_panel.setBackground(almond_cream);
+		
+		JButton next_page = new JButton("->");
+		next_page.setBounds(300,640,100, 50);
+		JButton previous_page = new JButton("<-");
+		previous_page.setBounds(50,640,100, 50);
+		
+		
 
 		JPanel center_container = new JPanel(new BorderLayout());
 		center_container.setPreferredSize(new Dimension(450, 450));
@@ -64,12 +87,16 @@ public class MWindow extends JFrame implements ActionListener {
 		// bb (borrowed books)
 		JPanel bb_panel = new JPanel();
 		// bb_panel.setBorder(BorderFactory.createLineBorder(Color.black,5));
-		bb_panel.setBackground(camel);
+		bb_panel.setBackground(new Color(204, 149, 120));
 		// bb_panel.set
 		//bb_panel.setVisible(false);
 
 		// Adding things to the Window
 		center_container.add(bb_panel);
+		left_container.add(next_page);
+		left_container.add(previous_page);
+		left_container.add(book_panel);
+		left_container.add(current_book);
 
 		this.add(header, BorderLayout.NORTH);
 		this.add(center_container, BorderLayout.CENTER);
