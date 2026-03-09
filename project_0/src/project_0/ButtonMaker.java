@@ -34,19 +34,17 @@ public class ButtonMaker {
 					System.out.println("you clicked a button");
 					switch (name) {
 					case "Borrowed Books":
-						System.out.println("you are in a book window");
+						System.out.println(name);
 						break;
-					case "Book Requests":
-						System.out.println("you are in a book Request Window");
+					case "Requested Books":
+						System.out.println(name);
 						break;
 						default:
 							System.out.println("there is no description");
 							break;
 					}
-
 				}
 			}
-
 		});
 
 	}

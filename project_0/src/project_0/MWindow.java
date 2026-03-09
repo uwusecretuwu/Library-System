@@ -45,7 +45,7 @@ public class MWindow extends JFrame implements ActionListener {
 		ButtonMaker borrowed_books = new ButtonMaker("Images/book.png");
 		borrowed_books.buttonmaker("Borrowed Books", header, camel);
 		ButtonMaker requested_books = new ButtonMaker("Images/requestedbooks.png");
-		requested_books.buttonmaker("Request Books", header, camel);
+		requested_books.buttonmaker("Requested Books", header, camel);
 		ButtonMaker available_books = new ButtonMaker("Images/requestedbooks.png");
 		available_books.buttonmaker("Available Books", header, camel);
 		ButtonMaker History = new ButtonMaker("Images/requestedbooks.png");
