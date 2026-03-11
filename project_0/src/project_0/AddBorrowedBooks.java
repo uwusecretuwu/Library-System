@@ -8,10 +8,10 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
     private final JTextField txttitle;
     private final JTextField txtauthor;
     private final JTextField txtname;
-    private final JTextField contactno;
+    private final JTextField txtcontactno;
     private final JTextField txtdateborrowed;
     private final JButton btnadd;
-    private final LMS mainm;
+    private final BorrowedBooks mainm;
   public AddBorrowedBooks(BorrowedBooks mainm)
   {
         super(mainm, "Borrow Book", true);
@@ -30,7 +30,7 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
         txtname = new JTextField();
         add(txtname);
         add(new JLabel("Contact Number:"));
-        txtstudentid = new JTextField();
+        txtcontactno = new JTextField();
         add(txtcontactno);
         add(new JLabel("Date Borrowed:"));
         txtdateborrowed = new JTextField();
@@ -50,13 +50,13 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
             String title = txttitle.getText().trim();
             String author = txtauthor.getText().trim();
             String name = txtname.getText().trim();
-            String studentid = txtcontactno.getText().trim();
+            String borrower_contactno = txtcontactno.getText().trim();
             String borrowed = txtdateborrowed.getText().trim();
 
             if (!title.isEmpty() && !author.isEmpty() && !name.isEmpty() &&
-                !contactno.isEmpty() && !borrowed.isEmpty()) {
+                !borrower_contactno.isEmpty() && !borrowed.isEmpty()) {
 
-                mainm.addBook(title, author, name, contactno, borrowed); 
+                mainm.addBook(title, author, name, borrower_contactno, borrowed); 
                 dispose();
 
             } else 

@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class ButtonMaker {
 
+	JButton button;
 	int r, g, b;
 	int size = 75;
 	int x,y;
@@ -20,15 +21,15 @@ public class ButtonMaker {
 		
 	}
 
-	public void buttonmaker(String name, JPanel panel, Color color) {
-		JButton button = new JButton();
+	public void buttonmaker(String name, Container cont, Color color) {
+		button = new JButton();
 		ImageIcon button_image = new ImageIcon(new ImageIcon(this.img, name).getImage().getScaledInstance(this.size, this.size, Image.SCALE_SMOOTH));
 
 		button.setBounds(x, 10, 75, 80);
 		button.setIcon(button_image);
 		button.setBorder(BorderFactory.createLineBorder(color,5));
 		button.setForeground(Color.GREEN); // This is a text color
-		panel.add(button);
+		cont.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == button) {
@@ -36,13 +37,12 @@ public class ButtonMaker {
 					switch (name) {
 					case "Borrowed Books":
 						System.out.println(name);
-						bb_panel.setVisible(true);
 						break;
 					case "Requested Books":
 						System.out.println(name);
 						break;
 						default:
-							System.out.println("there is no description");
+							System.out.println(" Name not Found");
 							break;
 					}
 				}

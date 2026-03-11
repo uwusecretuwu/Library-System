@@ -46,6 +46,7 @@ public class MWindow extends JFrame implements ActionListener {
 		header_left.setBounds(435,0,10,100);
 		header_left.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, coffee_bean));
 		
+		//books in the header
 		LabelMaker books = new LabelMaker("Images/requestedbooks.png");
 		books.labelmaker(header, 0, 0, 30, 95, coffee_bean);
 		books.labelmaker(header, 300, 10, 30, 85, camel);
@@ -69,7 +70,6 @@ public class MWindow extends JFrame implements ActionListener {
 		available_books = new ButtonMaker("Images/requestedbooks.png");
 		available_books.x = 500;
 		available_books.buttonmaker("Available Books", header, camel);
-		borrowed_books.bb_panel = this.bb_panel;
 		borrowed_books = new ButtonMaker("Images/book.png");
 		borrowed_books.x = 600;
 		borrowed_books.buttonmaker("Borrowed Books", header, camel);
@@ -112,15 +112,12 @@ public class MWindow extends JFrame implements ActionListener {
 		// bb (borrowed books)
 		header.add(searchbar);
 		bb_panel = new JPanel(null);
-		// bb_panel.setBorder(BorderFactory.createLineBorder(Color.black,5));
 		JLabel text = new JLabel("Skibnidi");
 		text.setSize(100, 100);
 		bb_panel.setBackground(new Color(204, 149, 120));
 		// bb_panel.set
-		//bb_panel.setVisible(false);
 
 		// Adding things to the Window
-		//header.add(header_buttons);
 		header.add(header_left);
 		bb_panel.add(text);
 		center_container.add(bb_panel);
@@ -140,17 +137,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(notification_button)) {
-			counter++;
-			if (counter == 1) {
-				System.out.println("work");
-
-			} else {
-				System.out.print("not");
-				counter = 0;
-
-			}
-		}
+		
 	}
 
 }

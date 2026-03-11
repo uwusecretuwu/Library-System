@@ -68,8 +68,8 @@ public class BorrowedBooks extends JFrame implements ActionListener
     {
         if (e.getSource() == btnadd) 
         {
-            AddBorrowedBooks br = new AddBorrrowedBooks(this);
-            br.setVisible(true);
+            AddBorrowedBooks bb = new AddBorrowedBooks(this);
+            bb.setVisible(true);
         }
     }
 }
