@@ -8,17 +8,15 @@ import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class ButtonMaker {
+public class ButtonMaker extends JButton{
 
 	JButton button;
 	int r, g, b;
 	int size = 75;
 	int x,y;
-	static JPanel bb_panel,ab_panel,rb_panel,h_panel;
 	String img;
 	ButtonMaker(String img) {
 		this.img = img;
-		
 	}
 
 	public void buttonmaker(String name, Container cont, Color color) {
@@ -47,7 +45,7 @@ public class ButtonMaker {
 					}
 				}
 			}
-		});
+		}); 
 
 	}
 }
