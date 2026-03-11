@@ -1,4 +1,6 @@
 package project_0;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,15 +11,14 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
     private final JTextField txtauthor;
     private final JTextField txtname;
     private final JTextField txtcontactno;
-    private final JTextField txtdateborrowed;
     private final JButton btnadd;
     private final BorrowedBooks mainm;
   public AddBorrowedBooks(BorrowedBooks mainm)
   {
-        super(mainm, "Borrow Book", true);
+        super((Frame) SwingUtilities.getWindowAncestor(mainm), "Borrow Book", true);
         this.mainm = mainm;
 
-        setLayout(new GridLayout(6, 2, 10, 10));
+        setLayout(new GridLayout(7, 2, 10, 10));
         setSize(350, 300);
         setLocationRelativeTo(mainm);
         add(new JLabel("Title:"));
@@ -32,9 +33,8 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
         add(new JLabel("Contact Number:"));
         txtcontactno = new JTextField();
         add(txtcontactno);
-        add(new JLabel("Date Borrowed:"));
-        txtdateborrowed = new JTextField();
-        add(txtdateborrowed);
+        
+        
         btnadd = new JButton("Add");
         btnadd.addActionListener(this);
         add(new JLabel());
@@ -51,12 +51,10 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
             String author = txtauthor.getText().trim();
             String name = txtname.getText().trim();
             String borrower_contactno = txtcontactno.getText().trim();
-            String borrowed = txtdateborrowed.getText().trim();
 
-            if (!title.isEmpty() && !author.isEmpty() && !name.isEmpty() &&
-                !borrower_contactno.isEmpty() && !borrowed.isEmpty()) {
+            if (!title.isEmpty() && !author.isEmpty() && !name.isEmpty()) {
 
-                mainm.addBook(title, author, name, borrower_contactno, borrowed); 
+                mainm.addBook(title, author, name, borrower_contactno); 
                 dispose();
 
             } else 
@@ -66,4 +64,5 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
         }
     }
 }
+
 
