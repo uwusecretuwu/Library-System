@@ -23,7 +23,7 @@ class History extends JPanel {
         add(top, BorderLayout.NORTH);
 
         //sub panels
-        JPanel mainContent = new JPanel(new GridLayout(1,3));
+        JPanel mainContent = new JPanel(new GridLayout(1,3,0,10));
         mainContent.setBackground(Color.WHITE);
         mainContent.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         borrowedPanel= createSubPanel("BORROWED BOOKS");
@@ -68,6 +68,7 @@ class History extends JPanel {
     }
     
 }
+
 
 
 
