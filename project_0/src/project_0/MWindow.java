@@ -71,16 +71,16 @@ public class MWindow extends JFrame implements ActionListener {
 		available_books.x = 500;
 		available_books.buttonmaker("Available Books", header, camel);
 		borrowed_books = new ButtonMaker("Images/book.png");
-		borrowed_books.x = 600;
+		borrowed_books.x = 750;
 		borrowed_books.buttonmaker("Borrowed Books", header, camel);
 		requested_books = new ButtonMaker("Images/requestedbooks.png");
-		requested_books.x = 700;
+		requested_books.x = 950;
 		requested_books.buttonmaker("Requested Books", header, camel);
 		history = new ButtonMaker("Images/requestedbooks.png");
-		history.x = 800;
+		history.x = 1200;
 		history.buttonmaker("History", header, camel);
 		notification_button = new ButtonMaker("Images/notification_bell.png");
-		notification_button.x = 900;
+		notification_button.x = 1400;
 		notification_button.buttonmaker("Notification Button", header, camel);
 
 		JPanel left_container = new JPanel(null);
