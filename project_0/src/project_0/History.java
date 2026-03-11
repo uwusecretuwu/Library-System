@@ -1,7 +1,11 @@
 package project_0;
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
@@ -10,10 +14,33 @@ class History extends JPanel {
     String Title;
     History() {
         this.setSize(100,100);
-        this.setBackground(Color.magenta);
+        this.setBackground(Color.white);
+        setLayout(new BorderLayout());
     }
     public void addpanel() {
-        //set 
+    	
+    	//If there is error try importing or check the spelling
+    	
+        //top = new JPanel(new BorderLayout);
+        //top.setBackground(new Color(90, 30, 0));
+        //JLabel title = new JLabel("HISTORY");
+        //title.setFont("Times New Roman", Font.BOLD, 28)):
+        //title.setForeground(Color.WHITE);
+        //top.add(title, BorderLayout.WEST);
+        //add(top, BorderLayout.NORTH);
+
+        //sub panels
+        JPanel mainContent = new JPanel(new GridLayout(1,3,0,10));
+        mainContent.setBackground(Color.WHITE);
+        mainContent.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        /*borrowedPanel= createSubPanel("BORROWED BOOKS");
+        requestPanel= createSubPanel("REQUESTED BOOKS");
+        availablePanel= createSubPanel("AVAILABLE BOOKS");
+        mainContent.add(borrowedPanel);
+        mainContent.add(availablePanel);
+        mainContent.add(requestedPanel);
+        add(mainContent, BorderLayout.CENTER);*/
+        
         
         
     }
@@ -48,4 +75,7 @@ class History extends JPanel {
     }
     
 }
+
+
+
 
