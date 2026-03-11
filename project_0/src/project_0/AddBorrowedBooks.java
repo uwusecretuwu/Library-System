@@ -1,20 +1,20 @@
 package project_0;
-import com.toedter.calendar.JDateChooser;
-import java.util.Date;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
 
-public class AddBorrowedBooks extends JDialog implements ActionListener
+public class AddBorrowedBooks extends JDialog implements ActionListener 
 {
     private final JTextField txttitle;
     private final JTextField txtauthor;
     private final JTextField txtname;
     private final JTextField txtcontactno;
+    private final JTextField txtdateborrowed;
     private final JButton btnadd;
     private final BorrowedBooks mainm;
-  public AddBorrowedBooks(BorrowedBooks mainm)
-  {
+
+    public AddBorrowedBooks(BorrowedBooks mainm) {
         super((Frame) SwingUtilities.getWindowAncestor(mainm), "Borrow Book", true);
         this.mainm = mainm;
 
@@ -33,36 +33,36 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
         add(new JLabel("Contact Number:"));
         txtcontactno = new JTextField();
         add(txtcontactno);
-        
+        add(new JLabel("Date Borrowed:"));
+        txtdateborrowed = new JTextField();
+        txtdateborrowed.setEditable(false);
+        txtdateborrowed.setText(LocalDate.now().toString()); 
+        add(txtdateborrowed);
         
         btnadd = new JButton("Add");
         btnadd.addActionListener(this);
         add(new JLabel());
         add(btnadd);
-  }
-  @Override
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) 
     {
-
         if (e.getSource() == btnadd) 
-            {
-
+        {
             String title = txttitle.getText().trim();
             String author = txtauthor.getText().trim();
             String name = txtname.getText().trim();
-            String borrower_contactno = txtcontactno.getText().trim();
+            String contact = txtcontactno.getText().trim();
+            String dateborrowed = txtdateborrowed.getText().trim(); 
 
-            if (!title.isEmpty() && !author.isEmpty() && !name.isEmpty()) {
-
-                mainm.addBook(title, author, name, borrower_contactno); 
-                dispose();
-
-            } else 
+            if (!title.isEmpty() && !author.isEmpty() && !name.isEmpty()) 
             {
+                mainm.addBook(title, author, name, contact, dateborrowed);
+                dispose();
+            } else {
                 JOptionPane.showMessageDialog(this, "Please fill in all fields.");
             }
         }
     }
 }
-
-
