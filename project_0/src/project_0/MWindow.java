@@ -25,11 +25,15 @@ public class MWindow extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		this.setExtendedState(MAXIMIZED_BOTH);
 
+		
+
 		// Panels
 		LPane = new JLayeredPane();
 		LPane.setBounds(350, 35, 100, 100);
 		LPane.setVisible(false);
 
+		
+		
 		header = new JPanel();
 		header.setBounds(0, 0, 1920, 35);
 		header.setBackground(new Color(170, 229, 118));
