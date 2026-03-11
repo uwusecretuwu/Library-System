@@ -4,13 +4,13 @@ import java.awt.Color;
 
 import javax.swing.*;
 
-public class Splashscreen{
+public class splash_screen{
 	
 	boolean progressbarisdone = false;
 	JFrame frame = new JFrame();
 	JProgressBar PBar = new JProgressBar();
 
-	public Splashscreen() {
+	public splash_screen() {
 		PBar.setValue(0); // the value is converted to percentage from 0% to 100%
 		PBar.setBounds(50,150,400,25);
 		frame.add(PBar);

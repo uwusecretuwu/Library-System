@@ -1,43 +1,53 @@
 package project_0;
+
 import java.awt.Color;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class ButtonMaker {
-	
-	int r,g,b;
-	
-	public void buttonmaker(String name, JPanel panel, int width, int height, int...RGB) {
-		JButton button = new JButton(name);
-		button.setSize(width,height);
-		r = RGB[0];
-		g = RGB[1];
-		g = RGB[2];
-		button.setBackground(new Color(r,g,b));
-		panel.add(button);
+
+	JButton button;
+	int r, g, b;
+	int size = 75;
+	int x,y;
+	static JPanel bb_panel,ab_panel,rb_panel,h_panel;
+	String img;
+	ButtonMaker(String img) {
+		this.img = img;
+		
+	}
+
+	public void buttonmaker(String name, Container cont, Color color) {
+		button = new JButton();
+		ImageIcon button_image = new ImageIcon(new ImageIcon(this.img, name).getImage().getScaledInstance(this.size, this.size, Image.SCALE_SMOOTH));
+
+		button.setBounds(x, 10, 75, 80);
+		button.setIcon(button_image);
+		button.setBorder(BorderFactory.createLineBorder(color,5));
+		button.setForeground(Color.GREEN); // This is a text color
+		cont.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==button) {
+				if (e.getSource() == button) {
 					System.out.println("you clicked a button");
-					switch(button.getLabel()) {
+					switch (name) {
 					case "Borrowed Books":
-						System.out.println("you are in a book window");
+						System.out.println(name);
 						break;
-					case "Book Requests":
-						System.out.println("you are in a book Request Window");
+					case "Requested Books":
+						System.out.println(name);
 						break;
+						default:
+							System.out.println(" Name not Found");
+							break;
 					}
-					
 				}
 			}
-			
 		});
-		
 
 	}
 }
