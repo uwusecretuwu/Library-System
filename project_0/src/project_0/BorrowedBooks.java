@@ -1,69 +1,85 @@
 package project_0;
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class BorrowedBooks extends JFrame implements ActionListener {
-	JButton btnadd;
-	JLayeredPane data;
-	JPanel gridpanel;
+public class BorrowedBooks extends JPanel implements ActionListener 
+{
+//make label => button
+    //make information removable
+    JButton btnadd;
+    JLayeredPane data;
+    JPanel gridpanel;
 
-	public BorrowedBooks() {
-		getContentPane().setBackground(new Color(90, 30, 0));
-		setLayout(new BorderLayout());
+    public BorrowedBooks() {
 
-		JPanel top = new JPanel(new BorderLayout());
-		top.setBackground(new Color(90, 30, 0));
+        setPreferredSize(new Dimension(600,600));
+        setLayout(new BorderLayout());
 
-		JLabel title = new JLabel("BORROWED BOOKS");
-		title.setFont(new Font("Times New Roman", Font.BOLD, 28));
-		title.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
-		title.setForeground(Color.WHITE);
-		top.add(title, BorderLayout.WEST);
-		add(top, BorderLayout.NORTH);
+        JPanel top = new JPanel(new BorderLayout());
+        top.setBackground(new Color(90, 30, 0));
 
-		btnadd = new JButton("ADD");
-		btnadd.setFont(new Font("Times New Roman", Font.BOLD, 10));
-		btnadd.addActionListener(this);
+        JLabel title = new JLabel("BORROWED BOOKS");
+        title.setFont(new Font("Times New Roman", Font.BOLD, 28));
+        title.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
+        title.setForeground(Color.WHITE);
 
-		JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 19, 16));
-		right.setOpaque(false);
-		right.add(btnadd);
-		top.add(right, BorderLayout.EAST);
+        top.add(title, BorderLayout.WEST);
 
-		JPanel center = new JPanel();
-		center.setBackground(new Color(90, 30, 0));
-		add(center, BorderLayout.CENTER);
+        btnadd = new JButton("ADD");
+        btnadd.setFont(new Font("Times New Roman", Font.BOLD, 10));
+        btnadd.addActionListener(this);
+        btnadd.setBackground(new Color(245,235,210));
 
-		data = new JLayeredPane();
-		data.setPreferredSize(new Dimension(550, 480));
-		data.setBackground(new Color(245, 235, 210));
-		data.setOpaque(true);
-		center.add(data);
+        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 19, 16));
+        right.setOpaque(false);
+        right.add(btnadd);
 
-		gridpanel = new JPanel(new GridLayout(0, 2, 5, 5));
-		gridpanel.setOpaque(false);
-		gridpanel.setBounds(10, 10, 550, 420);
-		data.add(gridpanel, JLayeredPane.DEFAULT_LAYER);
-	}
+        top.add(right, BorderLayout.EAST);
 
-	public void addBook(String title, String author, String name, String contactno, String borrowed) {
-		JTextArea txtarea = new JTextArea("Book Title: " + title + "\n" + "Author: " + author + "\n" + "Name: " + name
-				+ "\n" + "Contact Number: " + contactno + "\n" + "Borrowed: " + borrowed + "\n");
+        add(top, BorderLayout.NORTH);
 
-		txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 19));
-		txtarea.setBackground(new Color(245, 235, 210));
-		gridpanel.add(txtarea);
-		gridpanel.revalidate();
-		gridpanel.repaint();
-	}
+        JPanel center = new JPanel();
+        center.setBackground(new Color(90, 30, 0));
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnadd) {
-			AddBorrowedBooks bb = new AddBorrowedBooks(this);
-			bb.setVisible(true);
-		}
-	}
+        data = new JLayeredPane();
+        data.setPreferredSize(new Dimension(550, 480));
+        data.setBackground(new Color(245, 235, 210));
+        data.setOpaque(true);
+
+        center.add(data);
+
+        add(center, BorderLayout.CENTER);
+
+        gridpanel = new JPanel(new GridLayout(0, 2, 5, 5));
+        gridpanel.setOpaque(false);
+        gridpanel.setBounds(10, 10, 520, 420);
+
+        data.add(gridpanel, JLayeredPane.DEFAULT_LAYER);
+    }
+
+    public void addBook(String title, String author, String name, String contactno) {
+
+        JTextArea txtarea = new JTextArea(
+                "Book Title: " + title +
+                "\nAuthor: " + author +
+                "\nName: " + name +
+                "\nContact Number: ");
+
+        txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+        txtarea.setBackground(new Color(245, 235, 210));
+
+        gridpanel.add(txtarea);
+        gridpanel.revalidate();
+        gridpanel.repaint();
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == btnadd) {
+            AddBorrowedBooks bb = new AddBorrowedBooks(this);
+            bb.setVisible(true);
+        }
+
+    }
 }
