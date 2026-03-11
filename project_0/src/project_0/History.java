@@ -11,9 +11,21 @@ class History extends JPanel {
     History() {
         this.setSize(100,100);
         this.setBackground(Color.magenta);
+        setLayout(new BorderLayout());
     }
     public void addpanel() {
-        set 
+        top = new JPanel(new BorderLayout);
+        top.setBackground(new Color(90, 30, 0));
+        JLabel title = new JLabel("HISTORY");
+        title.setFont("Times New Roman", Font.BOLD, 28)):
+        title.setForeground(Color.WHITE);
+        top.add(title, BorderLayout.WEST);
+        add(top, BorderLayout.NORTH);
+
+        //sub panels
+        borrowedPanel= createSubPanel("BORROWED BOOKS");
+        requestPanel= createSubPanel("REQUESTED BOOKS");
+        availablePanel= createSubPanel("AVAILABLE BOOKS");
         
         
     }
@@ -48,4 +60,5 @@ class History extends JPanel {
     }
     
 }
+
 
