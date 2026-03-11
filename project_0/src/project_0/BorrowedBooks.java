@@ -14,7 +14,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
     
     public BorrowedBooks() {
 
-        setPreferredSize(new Dimension(600,600));
+        setBounds(20,60,1040,650);
         setLayout(new BorderLayout());
         //all stuffs sa taas
         top = new JPanel(new BorderLayout());
@@ -62,6 +62,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 //now we border panels to the grids
         JPanel border = new JPanel();
         border.setLayout(null);
+        border.setBorder(BorderFactory.createLineBorder(new Color(0,0,0),5));
         border.setBackground(new Color(245, 235, 210));
         JTextArea txtarea = new JTextArea("Book Title: " + title +
                                           "\nAuthor: " + author +

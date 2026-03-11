@@ -8,7 +8,10 @@ public class MWindow extends JFrame implements ActionListener {
 
 	// Declaration
 	int counter = 1;
-	ButtonMaker borrowed_books,requested_books, available_books, history, notification_button;
+	
+	BorrowedBooks bb = new BorrowedBooks();
+	
+	JButton borrowed_books,requested_books, available_books, history, notification_button;
 
 	Color coffee_bean = new Color(127, 85, 57);
 	Color camel = new Color(166, 138, 100);
@@ -18,7 +21,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 	JPanel header,header_left, header_buttons;
 	JLabel book_cover_title;
-	JPanel bb_panel;
+	JPanel bb_panel, center_container;
 	JTextField searchbar;
 	ImageIcon bell;
 
@@ -64,24 +67,47 @@ public class MWindow extends JFrame implements ActionListener {
 		searchbar.setBounds(100,40,200,40);
 		searchbar.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		
-		
-		
 		// all the buttons on the header
-		available_books = new ButtonMaker("Images/requestedbooks.png");
-		available_books.x = 500;
-		available_books.buttonmaker("Available Books", header, camel);
-		borrowed_books = new ButtonMaker("Images/book.png");
-		borrowed_books.x = 750;
-		borrowed_books.buttonmaker("Borrowed Books", header, camel);
-		requested_books = new ButtonMaker("Images/requestedbooks.png");
-		requested_books.x = 950;
-		requested_books.buttonmaker("Requested Books", header, camel);
-		history = new ButtonMaker("Images/requestedbooks.png");
-		history.x = 1200;
-		history.buttonmaker("History", header, camel);
-		notification_button = new ButtonMaker("Images/notification_bell.png");
-		notification_button.x = 1400;
-		notification_button.buttonmaker("Notification Button", header, camel);
+		available_books = new JButton();
+		available_books.setBounds(500, 10, 75, 80);
+		available_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		available_books.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
+		available_books.setForeground(Color.GREEN); // This is a text color
+		header.add(available_books);
+		available_books.addActionListener(this);
+		
+		borrowed_books = new JButton();
+		borrowed_books.setBounds(700, 10, 75, 80);
+		borrowed_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		borrowed_books.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
+		borrowed_books.setForeground(Color.GREEN); // This is a text color
+		header.add(borrowed_books);
+		borrowed_books.addActionListener(this);
+		
+		requested_books = new JButton();
+		requested_books.setBounds(950, 10, 75, 80);
+		requested_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		requested_books.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
+		requested_books.setForeground(Color.GREEN); // This is a text color
+		header.add(requested_books);
+		requested_books.addActionListener(this);
+		
+		history = new JButton();
+		history.setBounds(1200, 10, 75, 80);
+		history.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		history.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
+		history.setForeground(Color.GREEN); // This is a text color
+		header.add(history);
+		history.addActionListener(this);
+		
+		notification_button = new JButton();
+		notification_button.setBounds(1400, 10, 75, 80);
+		notification_button.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		notification_button.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
+		notification_button.setForeground(Color.GREEN); // This is a text color
+		header.add(notification_button);
+		notification_button.addActionListener(this);
+		
 
 		JPanel left_container = new JPanel(null);
 		left_container.setPreferredSize(new Dimension(450, 0));
@@ -105,22 +131,18 @@ public class MWindow extends JFrame implements ActionListener {
 		// Retrieved 2026-03-10, License - CC BY-SA 4.0
 		
 
-		JPanel center_container = new JPanel();
+		center_container = new JPanel();
+		center_container.setLayout(null);
 		center_container.setPreferredSize(new Dimension(450, 450));
 		center_container.setBackground(almond_cream);
 
 		// bb (borrowed books)
-		header.add(searchbar);
-		bb_panel = new JPanel(null);
-		JLabel text = new JLabel("Skibnidi");
-		text.setSize(100, 100);
-		bb_panel.setBackground(new Color(204, 149, 120));
 		// bb_panel.set
 
 		// Adding things to the Window
+		bb.setVisible(false);
+		center_container.add(bb);
 		header.add(header_left);
-		bb_panel.add(text);
-		center_container.add(bb_panel);
 		left_container.add(book_cover);
 		book_cover.add(book_cover_title, BorderLayout.CENTER);
 		
@@ -137,10 +159,14 @@ public class MWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==available_books) {
-			
+		if(e.getSource()!=borrowed_books) {
+			System.out.println("available books on");
+			bb.setVisible(false);
 		}
-		
+		if(e.getSource()==borrowed_books) {
+			System.out.println("borrowed Books on");
+			bb.setVisible(true);
+			bb.repaint();
+		}		
 	}
-
 }
