@@ -50,9 +50,16 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         center = new JPanel(new BorderLayout());
         center.setBackground(new Color(245, 235, 210));
         add(center, BorderLayout.CENTER);
-        gridpanel = new JPanel(new GridLayout(0, 2, 20, 20));
+        gridpanel = new JPanel();
+        gridpanel.setLayout(new BoxLayout(gridpanel, BoxLayout.Y_AXIS));
         gridpanel.setOpaque(false);
-        center.add(gridpanel, BorderLayout.CENTER);
+        gridpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));       
+        
+        JScrollPane scroll = new JScrollPane(gridpanel);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.getViewport().setBackground(new Color(245, 235, 210)); 
+        center.add(scroll, BorderLayout.CENTER);
         
         
     }
@@ -61,33 +68,38 @@ public class BorrowedBooks extends JPanel implements ActionListener {
     {
 //now we border panels to the grids
         JPanel border = new JPanel();
-        border.setLayout(null);
-        border.setBorder(BorderFactory.createLineBorder(new Color(0,0,0),5));
+        border.setLayout(new BorderLayout(10,10));
         border.setBackground(new Color(245, 235, 210));
+        border.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
+        border.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextArea txtarea = new JTextArea("Book Title: " + title +
                                           "\nAuthor: " + author +
                                           "\nName: " + name +
                                           "\nContact Number: " + contactno+
                                           "\nDate Borrowed: "+dateborrowed );
         
-        txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 20));
+        txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         txtarea.setBackground(new Color(245, 235, 210));
         txtarea.setEditable(false);
-        txtarea.setBounds(10, 10, 280, 160);
-        border.add(txtarea);
-        
+        txtarea.setLineWrap(true);
+        txtarea.setWrapStyleWord(true);
+        border.add(txtarea, BorderLayout.CENTER);
+                
 
         JButton remover = new JButton("REMOVE");
-        remover.setBounds(10, 180, 100, 30);
-        border.add(remover);
         remover.setBackground(new Color(90,30,0));
         remover.setForeground(Color.WHITE);
+        JPanel buttonpanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonpanel.setOpaque(false);
+        buttonpanel.add(remover);
+        border.add(buttonpanel, BorderLayout.SOUTH);
         remover.addActionListener(e -> {
         gridpanel.remove(border);
         gridpanel.revalidate();
         gridpanel.repaint();
         });
         gridpanel.add(border);
+        gridpanel.add(Box.createRigidArea(new Dimension(0, 10)));
         gridpanel.revalidate();
         gridpanel.repaint();
     }
