@@ -17,7 +17,7 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
         super(mainm, "Borrow Book", true);
         this.mainm = mainm;
 
-        setLayout(new GridLayout(7, 2, 10, 10));
+        setLayout(new GridLayout(6, 2, 10, 10));
         setSize(350, 300);
         setLocationRelativeTo(mainm);
         add(new JLabel("Title:"));

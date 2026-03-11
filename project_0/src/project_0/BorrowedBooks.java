@@ -7,7 +7,7 @@ public class BorrowedBooks extends JFrame implements ActionListener
 {
     JButton btnadd;
     JLayeredPane data;
-    JPanel gridPanel;
+    JPanel gridpanel;
 
   public BorrowedBooks()  
   {
@@ -43,10 +43,10 @@ public class BorrowedBooks extends JFrame implements ActionListener
         data.setOpaque(true);
         center.add(data);
 
-        gridPanel= new JPanel(new GridLayout(0, 2, 5, 5));
-        gridPanel.setOpaque(false);
-        gridPanel.setBounds(10, 10, 550, 420);
-        data.add(gridPanel, JLayeredPane.DEFAULT_LAYER);
+        gridpanel= new JPanel(new GridLayout(0, 2, 5, 5));
+        gridpanel.setOpaque(false);
+        gridpanel.setBounds(10, 10, 550, 420);
+        data.add(gridpanel, JLayeredPane.DEFAULT_LAYER);
     }
         public void addBook(String title, String author, String name, String contactno, String borrowed) 
     {
@@ -59,9 +59,9 @@ public class BorrowedBooks extends JFrame implements ActionListener
 
         txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 19));
         txtarea.setBackground(new Color(245,235,210));
-        gridPanel.add(txtarea);
-        gridPanel.revalidate();
-        gridPanel.repaint();
+        gridpanel.add(txtarea);
+        gridpanel.revalidate();
+        gridpanel.repaint();
     }
     @Override
     public void actionPerformed(ActionEvent e) 
@@ -73,3 +73,5 @@ public class BorrowedBooks extends JFrame implements ActionListener
         }
     }
 }
+
+
