@@ -78,7 +78,7 @@ public class MWindow extends JFrame implements ActionListener {
 		
 		borrowed_books = new JButton();
 		borrowed_books.setBounds(700, 10, 75, 80);
-		borrowed_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
+		borrowed_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png","borrowed_books").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
 		borrowed_books.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
 		borrowed_books.setForeground(Color.GREEN); // This is a text color
 		header.add(borrowed_books);
@@ -92,7 +92,7 @@ public class MWindow extends JFrame implements ActionListener {
 		header.add(requested_books);
 		requested_books.addActionListener(this);
 		
-		history = new JButton();
+		history = new JButton("history");
 		history.setBounds(1200, 10, 75, 80);
 		history.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
 		history.setBorder(BorderFactory.createLineBorder(new Color(100,100,100),5));
@@ -119,6 +119,14 @@ public class MWindow extends JFrame implements ActionListener {
 		book_cover.setBackground(new Color(153, 88, 42));
 		book_cover.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, almond_cream));
 		
+		JPanel book_mark = new JPanel();
+		book_mark.setBounds(400, 0, 20, 60);
+		book_mark.setBackground(new Color(153, 39, 11));
+		book_mark.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(67, 17, 5)));
+		
+		JButton book_opener = new JButton("Read");
+		book_opener.setBounds(300,550,100,30);
+		
 		book_cover_title = new JLabel("<html>Hello World!<br/>blahblahblah</html>");
 		book_cover_title.setFont(new Font("MV Boli", Font.PLAIN, 30));
 		book_cover_title.setBounds(50,100,350,200);
@@ -142,9 +150,13 @@ public class MWindow extends JFrame implements ActionListener {
 		// Adding things to the Window
 		bb.setVisible(false);
 		center_container.add(bb);
+		header.add(searchbar);
 		header.add(header_left);
-		left_container.add(book_cover);
+		book_cover.add(book_opener);
+		book_cover.add(book_mark);
+		book_cover.add(book_cover_title);
 		book_cover.add(book_cover_title, BorderLayout.CENTER);
+		left_container.add(book_cover);
 		
 		this.add(left_container, BorderLayout.WEST);
 		this.add(header, BorderLayout.NORTH);
@@ -159,14 +171,14 @@ public class MWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()!=borrowed_books) {
-			System.out.println("available books on");
+		
+		if(e.getSource().equals(available_books)) {
+			System.out.println("available books");
 			bb.setVisible(false);
 		}
-		if(e.getSource()==borrowed_books) {
-			System.out.println("borrowed Books on");
+		else if(e.getSource().equals(borrowed_books)) {
+			System.out.println("borrowed books");
 			bb.setVisible(true);
-			bb.repaint();
-		}		
-	}
+		}
+			}
 }

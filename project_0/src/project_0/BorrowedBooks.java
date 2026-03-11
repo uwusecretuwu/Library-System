@@ -33,6 +33,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 19, 16));
         right.setOpaque(false);
         right.add(btnadd);
+
         top.add(right, BorderLayout.EAST);
         add(top, BorderLayout.NORTH);
         //borders
@@ -58,9 +59,8 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         JScrollPane scroll = new JScrollPane(gridpanel);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.getViewport().setBackground(new Color(245, 235, 210)); 
+        scroll.getViewport().setBackground(new Color(245, 235, 210));
         center.add(scroll, BorderLayout.CENTER);
-        
         
     }
 

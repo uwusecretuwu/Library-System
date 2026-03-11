@@ -13,7 +13,7 @@ class History extends JPanel {
         this.setBackground(Color.magenta);
     }
     public void addpanel() {
-        set 
+        //set 
         
         
     }
@@ -24,7 +24,7 @@ class History extends JPanel {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Borrowed Books");
         label.setForeground(Color.red);
-        this.add(borrowedPanel);
+        //this.add(borrowedPanel);
         
     }
     //ab
@@ -34,7 +34,7 @@ class History extends JPanel {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Available Books");
         label.setForeground(Color.red);
-        this.add(availablePanel);
+        //this.add(availablePanel);
     
     }
     public void addhistory(String book, String author, String contact_number) {
@@ -43,7 +43,7 @@ class History extends JPanel {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Requested Books");
         label.setForeground(Color.red);
-        this.add(requestedPanel);
+        //this.add(requestedPanel);
         
     }
     

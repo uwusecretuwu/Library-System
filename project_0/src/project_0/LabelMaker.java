@@ -6,6 +6,8 @@ import javax.swing.*;
 
 public class LabelMaker {
 	String img;
+	LabelMaker() {
+	}
 	LabelMaker(String img) {
 		this.img=img;
 	}
