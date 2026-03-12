@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 public class BorrowedBooks extends JPanel implements ActionListener {
 
+	int scroll_speed = 16;
     JButton btnadd;
     JLabel title;
     JPanel gridpanel;
@@ -57,8 +58,9 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         gridpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));       
         
         JScrollPane scroll = new JScrollPane(gridpanel);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.getVerticalScrollBar().setUnitIncrement(scroll_speed); //speed scroll
         scroll.getViewport().setBackground(new Color(245, 235, 210));
         center.add(scroll, BorderLayout.CENTER);
         
