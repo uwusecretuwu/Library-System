@@ -70,13 +70,14 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         JPanel border = new JPanel();
         border.setLayout(new BorderLayout(10,10));
         border.setBackground(new Color(245, 235, 210));
+        border.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(153, 88, 42)));
         border.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
         border.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JTextArea txtarea = new JTextArea("Book Title: " + title +
-                                          "\nAuthor: " + author +
-                                          "\nName: " + name +
-                                          "\nContact Number: " + contactno+
-                                          "\nDate Borrowed: "+dateborrowed );
+        JTextArea txtarea = new JTextArea(" Book Title: " + title +
+                                          "\n Author: " + author +
+                                          "\n Name: " + name +
+                                          "\n Contact Number: " + contactno+
+                                          "\n Date Borrowed: "+dateborrowed );
         
         txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         txtarea.setBackground(new Color(245, 235, 210));
