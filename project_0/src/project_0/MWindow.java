@@ -8,11 +8,14 @@ public class MWindow extends JFrame implements ActionListener {
 
 	// Declaration
 	int counter = 1;
+	static JTextPane book_page_content = new JTextPane();
 
 	BorrowedBooks bb = new BorrowedBooks();
 	RequestBooks rb = new RequestBooks();
 
 	JButton borrowed_books, requested_books, available_books, history, notification_button;
+	
+	Colors color = new Colors();
 
 	Color coffee_bean = new Color(127, 85, 57);
 	Color camel = new Color(166, 138, 100);
@@ -24,7 +27,6 @@ public class MWindow extends JFrame implements ActionListener {
 	JLabel book_cover_title;
 	JPanel bb_panel, center_container, left_container, book_cover, book_page;
 	JTextField searchbar;
-	JTextArea book_page_content;
 	ImageIcon bell;
 	JButton book_opener;
 	JScrollPane scroll;
@@ -38,7 +40,7 @@ public class MWindow extends JFrame implements ActionListener {
 		this.setSize(new Dimension(460, 730));
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setAlwaysOnTop(true);
-		this.getContentPane().setBackground(almond_cream);
+		this.getContentPane().setBackground(color.almond_cream);
 
 		// Panels
 
@@ -49,7 +51,7 @@ public class MWindow extends JFrame implements ActionListener {
 		header.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, ebony));
 		header_left = new JPanel();
 		header_left.setBounds(435, 0, 10, 100);
-		header_left.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, coffee_bean));
+		header_left.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, color.coffee_bean));
 
 		// books in the header
 		LabelMaker books = new LabelMaker("Images/requestedbooks.png");
@@ -69,14 +71,19 @@ public class MWindow extends JFrame implements ActionListener {
 		searchbar.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 
 		// all the buttons on the header
-		available_books = new JButton();
+
+		ButtonMaker available_books = new ButtonMaker("Images/requestedbooks.png", header);
+		available_books.setBounds(500, 10, 75, 80);
+		available_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
+
+		/*available_books = new JButton();
 		available_books.setBounds(500, 10, 75, 80);
 		available_books.setIcon(new ImageIcon(
 				new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
 		available_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
 		available_books.setForeground(Color.GREEN); // This is a text color
 		header.add(available_books);
-		available_books.addActionListener(this);
+		available_books.addActionListener(this);*/
 
 		borrowed_books = new JButton();
 		borrowed_books.setBounds(700, 10, 75, 80);
@@ -145,21 +152,15 @@ public class MWindow extends JFrame implements ActionListener {
 		book_page.setBackground(almond_cream);
 		book_page.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 05, new Color(153, 88, 42)));
 
-		book_page_content = new JTextArea();
 		book_page_content.setBounds(0, 0, 445, 590);
 		book_page_content.setText("Hello");
 		book_page_content.setEditable(false);
-		
-		scroll = new JScrollPane(book_page_content);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.getViewport().setBackground(new Color(245, 235, 210));
-        book_page.add(scroll);
 
-		// Source - https://stackoverflow.com/a/2715279
-		// Posted by coobird, modified by community. See post 'Timeline' for change
-		// history
-		// Retrieved 2026-03-10, License - CC BY-SA 4.0
+		scroll = new JScrollPane(book_page_content);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.getViewport().setBackground(new Color(245, 235, 210));
+		book_page.add(scroll);
 
 		center_container = new JPanel();
 		center_container.setLayout(null);
@@ -210,12 +211,12 @@ public class MWindow extends JFrame implements ActionListener {
 		} else if (e.getSource().equals(borrowed_books)) {
 			System.out.println("borrowed books");
 			bb.setVisible(true);
-			
+
 			rb.setVisible(false);
 		} else if (e.getSource().equals(requested_books)) {
 			System.out.println("requested books");
 			rb.setVisible(true);
-			
+
 			bb.setVisible(false);
 		} else if (e.getSource().equals(history)) {
 			System.out.println("history");
