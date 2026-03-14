@@ -39,6 +39,7 @@ public class Main {
 				finished_line = finished_line + line + "\n";
 			}
 			window.book_page_content.setText(finished_line);
+			window.book_page_content.setCaretPosition(0);
 			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
