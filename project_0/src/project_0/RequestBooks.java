@@ -32,7 +32,6 @@ public class RequestBooks extends JPanel{
 		center_container.setBackground(new Color(237, 224, 212));
 		
 		this.add(center_container);
-		//header_title_container.add(header_title, BorderLayout.CENTER);
 		button_container.add(request_button);
 		request_book_header.add(button_container,BorderLayout.EAST);
 		request_book_header.add(header_title, BorderLayout.WEST);

@@ -3,6 +3,7 @@ package project_0;
         
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
@@ -19,5 +20,18 @@ class History extends JPanel {
 	    this.setBackground(c.black);
 	    this.setLayout(new BorderLayout());
 	    
+	    JPanel header = new JPanel();
+	    header.setLayout(null);
+	    header.setPreferredSize(new Dimension(0,100));
+	    header.setBackground(c.ebony);
+	    
+	    JLabel title = new JLabel("Skibidi");
+	    title.setSize(100, title.getFont().getSize()*10);
+	    title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 10));
+	    title.setBackground(c.ebony);
+	    title.setForeground(c.almond_cream);
+	    
+	    header.add(title);
+	    this.add(header, BorderLayout.NORTH);
 	}
 }
