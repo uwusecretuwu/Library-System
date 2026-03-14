@@ -18,6 +18,7 @@ public class MWindow extends JFrame implements ActionListener {
 	AvailableBooks ab = new AvailableBooks();
 	BorrowedBooks bb = new BorrowedBooks();
 	RequestBooks rb = new RequestBooks();
+	History h = new History();
 
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
 
@@ -161,6 +162,7 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.add(ab);
 		center_container.add(bb);
 		center_container.add(rb);
+		center_container.add(h);
 		header.add(searchbar);
 		book_cover.add(book_opener);
 		book_cover.add(book_mark);
@@ -215,21 +217,25 @@ public class MWindow extends JFrame implements ActionListener {
 			ab.setVisible(true);
 			bb.setVisible(false);
 			rb.setVisible(false);
+			h.setVisible(false);
 		} else if (e.getSource().equals(borrowed_books)) {
 			System.out.println("borrowed books");
 			bb.setVisible(true);
 			ab.setVisible(false);
 			rb.setVisible(false);
+			h.setVisible(false);
 		} else if (e.getSource().equals(requested_books)) {
 			System.out.println("requested books");
 			rb.setVisible(true);
 			ab.setVisible(false);
 			bb.setVisible(false);
+			h.setVisible(false);
 		} else if (e.getSource().equals(history)) {
 			System.out.println("history");
 			bb.setVisible(false);
 			rb.setVisible(false);
 			ab.setVisible(false);
+			h.setVisible(true);
 		}
 	}
 }
