@@ -130,7 +130,7 @@ public class MWindow extends JFrame implements ActionListener {
 		book_opener.setBounds(300, 550, 100, 30);
 		book_opener.addActionListener(this);
 
-		book_cover_title = new JLabel("<html>Hello World!<br/>blahblahblah</html>");
+		book_cover_title = new JLabel("<html>Welcome back!<br/>...spread me</html>");
 		book_cover_title.setFont(new Font("MV Boli", Font.PLAIN, 30));
 		book_cover_title.setBounds(50, 100, 350, 200);
 		book_cover_title.setBackground(new Color(0, 0, 0));
@@ -164,17 +164,19 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.add(bb);
 		center_container.add(rb);
 		center_container.add(h);
+		
 		header.add(searchbar);
 		book_cover.add(book_opener);
 		book_cover.add(book_mark);
 		book_cover.add(book_cover_title);
 		book_cover.add(book_cover_title, BorderLayout.CENTER);
+		book_page_content.setVisible(false);
 		
 		this.add(left_container, BorderLayout.WEST);
 		this.add(header, BorderLayout.NORTH);
 		this.add(center_container, BorderLayout.CENTER);
 		this.repaint();
-
+		
 		left_container.add(left_pane);
 		left_pane.add(book_cover);
 		left_pane.add(book_page);
@@ -193,23 +195,21 @@ public class MWindow extends JFrame implements ActionListener {
 				String file_book_name = files.getName();
 				System.out.println(file_book_name); // debug
 				if(files.exists()) {
-					System.out.println(files.exists());
+					System.out.println(files.exists()); // check
 					book_cover_title.setText(searchbar.getText());
 					search_info.setText("Book Found!");
-					try {
-						Main.getFileName(files);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
+					book_cover.setVisible(true);
 				} else {
 					search_info.setText("Book Not Found!");
 					System.out.println("that book does not exist!");
 				}
 				
 		} else if (e.getSource().equals(book_opener) && files.exists()) {
-			
+			try {
+				Main.getFileName(files);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println("book is opened");
 			book_page_content.setVisible(true);
 			book_cover.setVisible(false);

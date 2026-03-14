@@ -21,16 +21,16 @@ public class AvailableBooks extends JPanel{
     	this.setBounds(20,60,1040,650);
         this.setLayout(new BorderLayout());
         this.setVisible(false);
-        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.dry_sage));
+        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.dark_walnut));
         
         JPanel header = new JPanel();
         header.setLayout(null);
-        header.setPreferredSize(new Dimension(0,50));
+        header.setPreferredSize(new Dimension(0,40));
         header.setBackground(c.dark_walnut);
 
-        JLabel title = new JLabel("Available Books");
-        title.setBounds(10,10,title.getText().length()*14, title.getFont().getSize()*2);
-	    title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 25));
+        JLabel title = new JLabel("AVAILABLE BOOKS");
+        title.setBounds(15,5,title.getText().length()*19, title.getFont().getSize()*2);
+	    title.setFont(new Font("Times New Roman", Font.BOLD, 28));
 	    title.setForeground(c.almond_cream);
         
         JPanel topPanel = new JPanel(new BorderLayout());

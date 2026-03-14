@@ -19,7 +19,7 @@ public class Main {
 	static MWindow window = new MWindow();
 
 	public static void main(String[] args) {
-		// splash_screen Splash = new splash_screen();
+		splash_screen Splash = new splash_screen();
 		window.setVisible(true);
 
 	}
@@ -28,25 +28,21 @@ public class Main {
 
 		MutableAttributeSet set = new SimpleAttributeSet(window.book_page_content.getParagraphAttributes());
 		StyleConstants.setLineSpacing(set, 0.2f);
-		if (files.exists()) {
-			window.book_page_content.selectAll();
-			window.book_page_content.setParagraphAttributes(set, true);
-			finished_line = "";
-			window.book_page_content.setText(finished_line);
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(files));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					finished_line = finished_line + line + "\n";
-				}
-				window.book_page_content.setText(finished_line);
-				reader.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		window.book_page_content.selectAll();
+		window.book_page_content.setParagraphAttributes(set, true);
+		finished_line = "";
+		window.book_page_content.setText(finished_line);
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(files));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				finished_line = finished_line + line + "\n";
 			}
-		} else {
-			System.out.println(files + " does not exist");
+			window.book_page_content.setText(finished_line);
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

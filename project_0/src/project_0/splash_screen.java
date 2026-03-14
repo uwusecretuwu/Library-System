@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class splash_screen{
 	
+	Colors c = new Colors();
 	boolean progressbarisdone = false;
 	JFrame frame = new JFrame();
 	JProgressBar PBar = new JProgressBar();
@@ -13,8 +14,8 @@ public class splash_screen{
 	public splash_screen() {
 		PBar.setValue(0); // the value is converted to percentage from 0% to 100%
 		PBar.setBounds(50,150,400,25);
-		PBar.setForeground(new Color(237, 224, 212));
-		PBar.setBorder(BorderFactory.createLineBorder(new Color(127, 85, 57)));
+		PBar.setForeground(c.camel);
+		PBar.setBorder(BorderFactory.createMatteBorder(5,5,5,5,c.dark_walnut));
 		frame.add(PBar);
 		LabelMaker books = new LabelMaker();
 		books.labelmaker(frame, 50, 48, 10, 100, new Color(127, 85, 57));
