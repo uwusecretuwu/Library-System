@@ -2,19 +2,24 @@ package project_0;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class MWindow extends JFrame implements ActionListener {
 
 	// Declaration
-	int counter = 1;
-	static JTextPane book_page_content = new JTextPane();
+	
+	File files;
+	
+	JTextPane book_page_content = new JTextPane();
 
 	BorrowedBooks bb = new BorrowedBooks();
 	RequestBooks rb = new RequestBooks();
 
-	JButton borrowed_books, requested_books, available_books, history, notification_button;
-	
+	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
+
 	Colors color = new Colors();
 
 	Color coffee_bean = new Color(127, 85, 57);
@@ -26,9 +31,11 @@ public class MWindow extends JFrame implements ActionListener {
 	JPanel header, header_left, header_buttons;
 	JLabel book_cover_title;
 	JPanel bb_panel, center_container, left_container, book_cover, book_page;
+	JLayeredPane left_pane;
 	JTextField searchbar;
 	ImageIcon bell;
-	JButton book_opener;
+	JLabel search_info;
+	JButton book_opener, searchbar_button;
 	JScrollPane scroll;
 
 	public MWindow() {
@@ -43,22 +50,32 @@ public class MWindow extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(color.almond_cream);
 
 		// Panels
-
-		// header_buttons = new JPanel(grid_bag);
 		header = new JPanel(null);
 		header.setPreferredSize(new Dimension(0, 100));
 		header.setBackground(dusty_olive);
 		header.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, ebony));
-		header_left = new JPanel();
-		header_left.setBounds(435, 0, 10, 100);
-		header_left.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, color.coffee_bean));
+
+		searchbar = new JTextField();
+		searchbar.setBounds(100, 40, 200, 35);
+		searchbar.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+
+		searchbar_button = new JButton();
+		searchbar_button.setBounds(350, 15, 20, 80);
+		searchbar_button.addActionListener(this);
+		header.add(searchbar_button);
+		
+		search_info = new JLabel();
+		search_info.setBounds(95, 75, 205, 20);
+		search_info.setBackground(almond_cream);
+		search_info.setOpaque(true);
+		search_info.setHorizontalAlignment(SwingConstants.CENTER);
+		header.add(search_info);
 
 		// books in the header
 		LabelMaker books = new LabelMaker("Images/requestedbooks.png");
 		books.labelmaker(header, 0, 0, 30, 95, coffee_bean);
 		books.labelmaker(header, 300, 10, 30, 85, camel);
 		books.labelmaker(header, 150, 10, 100, 30, camel);
-		books.labelmaker(header, 95, 75, 205, 20, ebony);
 		books.labelmaker(header, 330, 20, 20, 75, coffee_bean);
 		books.labelmaker(header, 350, 15, 20, 80, ebony);
 		books.labelmaker(header, 370, 10, 10, 85, coffee_bean);
@@ -66,59 +83,25 @@ public class MWindow extends JFrame implements ActionListener {
 		books.labelmaker(header, 395, 10, 15, 85, camel);
 		books.labelmaker(header, 425, 10, 10, 85, coffee_bean);
 
-		searchbar = new JTextField();
-		searchbar.setBounds(100, 40, 200, 40);
-		searchbar.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-
 		// all the buttons on the header
+		available_books = new ButtonMaker("Images/availablebooks.png", header, 85, 80);
+		available_books.setLocation(500, 10);
+		available_books.addActionListener(this);
 
-		ButtonMaker available_books = new ButtonMaker("Images/requestedbooks.png", header);
-		available_books.setBounds(500, 10, 75, 80);
-		available_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-
-		/*available_books = new JButton();
-		available_books.setBounds(500, 10, 75, 80);
-		available_books.setIcon(new ImageIcon(
-				new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
-		available_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-		available_books.setForeground(Color.GREEN); // This is a text color
-		header.add(available_books);
-		available_books.addActionListener(this);*/
-
-		borrowed_books = new JButton();
-		borrowed_books.setBounds(700, 10, 75, 80);
-		borrowed_books.setIcon(new ImageIcon(new ImageIcon("Images/requestedbooks.png", "borrowed_books").getImage()
-				.getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
-		borrowed_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-		borrowed_books.setForeground(Color.GREEN); // This is a text color
-		header.add(borrowed_books);
+		borrowed_books = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		borrowed_books.setLocation(700, 10);
 		borrowed_books.addActionListener(this);
 
-		requested_books = new JButton();
-		requested_books.setBounds(950, 10, 75, 80);
-		requested_books.setIcon(new ImageIcon(
-				new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
-		requested_books.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-		requested_books.setForeground(Color.GREEN); // This is a text color
-		header.add(requested_books);
+		requested_books = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		requested_books.setLocation(950, 10);
 		requested_books.addActionListener(this);
 
-		history = new JButton("history");
-		history.setBounds(1200, 10, 75, 80);
-		history.setIcon(new ImageIcon(
-				new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
-		history.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-		history.setForeground(Color.GREEN); // This is a text color
-		header.add(history);
+		history = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		history.setLocation(1200, 10);
 		history.addActionListener(this);
 
-		notification_button = new JButton();
-		notification_button.setBounds(1400, 10, 75, 80);
-		notification_button.setIcon(new ImageIcon(
-				new ImageIcon("Images/requestedbooks.png").getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
-		notification_button.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 5));
-		notification_button.setForeground(Color.GREEN); // This is a text color
-		header.add(notification_button);
+		notification_button = new ButtonMaker("Images/requestedbooks.png", header, 75,80);
+		notification_button.setLocation(1400, 10);
 		notification_button.addActionListener(this);
 
 		left_container = new JPanel(null);
@@ -126,6 +109,10 @@ public class MWindow extends JFrame implements ActionListener {
 		left_container.setBackground(coffee_bean);
 		left_container.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, new Color(0, 0, 0)));
 
+		left_pane = new JLayeredPane();
+		left_pane.setLayout(null);
+		left_pane.setBounds(0,0,450,600);
+		
 		book_cover = new JPanel(null);
 		book_cover.setBounds(0, 0, 450, 600);
 		book_cover.setBackground(new Color(153, 88, 42));
@@ -147,19 +134,21 @@ public class MWindow extends JFrame implements ActionListener {
 		book_cover_title.setHorizontalAlignment(JLabel.CENTER);
 		book_cover_title.setVerticalAlignment(JLabel.CENTER);
 
-		book_page = new JPanel(null);
+		book_page = new JPanel(new BorderLayout());
 		book_page.setBounds(0, 0, 445, 595);
 		book_page.setBackground(almond_cream);
 		book_page.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 05, new Color(153, 88, 42)));
 
 		book_page_content.setBounds(0, 0, 445, 590);
-		book_page_content.setText("Hello");
 		book_page_content.setEditable(false);
+		book_page_content.setMargin(new Insets(10, 20, 10, 10));
+		book_page_content.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 13));
 
 		scroll = new JScrollPane(book_page_content);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.getViewport().setBackground(new Color(245, 235, 210));
+        scroll.getVerticalScrollBar().setUnitIncrement(7);
 		book_page.add(scroll);
 
 		center_container = new JPanel();
@@ -167,27 +156,23 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.setPreferredSize(new Dimension(450, 450));
 		center_container.setBackground(almond_cream);
 
-		// bb (borrowed books)
-		// bb_panel.set
-
 		// Adding things to the Window
-		bb.setVisible(false);
-		rb.setVisible(false);
 		center_container.add(bb);
 		center_container.add(rb);
 		header.add(searchbar);
-		header.add(header_left);
 		book_cover.add(book_opener);
 		book_cover.add(book_mark);
 		book_cover.add(book_cover_title);
 		book_cover.add(book_cover_title, BorderLayout.CENTER);
-		left_container.add(book_cover);
-
+		
 		this.add(left_container, BorderLayout.WEST);
 		this.add(header, BorderLayout.NORTH);
 		this.add(center_container, BorderLayout.CENTER);
 		this.repaint();
 
+		left_container.add(left_pane);
+		left_pane.add(book_cover);
+		left_pane.add(book_page);
 		// Method Implementations
 	}
 
@@ -197,14 +182,33 @@ public class MWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(book_opener)) {
+		if (e.getSource().equals(searchbar_button) && !searchbar.getText().isEmpty()) {
+				String file = searchbar.getText().toLowerCase();
+				files = new File("books/" + file + ".txt");
+				String file_book_name = files.getName();
+				System.out.println(file_book_name);
+				if(files.exists()) {
+					System.out.println(files.exists());
+					book_cover_title.setText(searchbar.getText());
+					search_info.setText("Book Found!");
+					try {
+						Main.getFileName(files);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				} else {
+					search_info.setText("Book Not Found!");
+					System.out.println("that book does not exist!");
+				}
+				
+		} else if (e.getSource().equals(book_opener) && files.exists()) {
+			
 			System.out.println("book is opened");
+			book_page_content.setVisible(true);
 			book_cover.setVisible(false);
-			book_page.add(book_page_content);
-			left_container.add(book_page);
-		}
-
-		else if (e.getSource().equals(available_books)) {
+		} else if (e.getSource().equals(available_books)) {
 			System.out.println("available books");
 			bb.setVisible(false);
 			rb.setVisible(false);
