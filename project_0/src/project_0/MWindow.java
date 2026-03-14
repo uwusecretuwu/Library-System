@@ -186,7 +186,7 @@ public class MWindow extends JFrame implements ActionListener {
 				String file = searchbar.getText().toLowerCase();
 				files = new File("books/" + file + ".txt");
 				String file_book_name = files.getName();
-				System.out.println(file_book_name);
+				System.out.println(file_book_name); // debug
 				if(files.exists()) {
 					System.out.println(files.exists());
 					book_cover_title.setText(searchbar.getText());
