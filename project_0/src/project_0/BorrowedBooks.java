@@ -88,8 +88,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
         txtarea.setEditable(false);
         txtarea.setLineWrap(true);
         txtarea.setWrapStyleWord(true);
-        border.add(txtarea, BorderLayout.CENTER);
-                
+        border.add(txtarea, BorderLayout.CENTER);              
 
         JButton remover = new JButton("REMOVE");
         remover.setBackground(new Color(90,30,0));
