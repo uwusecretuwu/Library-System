@@ -23,6 +23,7 @@ public class MWindow extends JFrame implements ActionListener {
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
 
 	Colors color = new Colors();
+	Images img = new Images();
 
 	Color coffee_bean = new Color(127, 85, 57);
 	Color camel = new Color(166, 138, 100);
@@ -86,7 +87,7 @@ public class MWindow extends JFrame implements ActionListener {
 		books.labelmaker(header, 425, 10, 10, 85, coffee_bean);
 
 		// all the buttons on the header
-		available_books = new ButtonMaker("Images/availablebooks.png", header, 85, 80);
+		available_books = new ButtonMaker(img.book1, header, 85, 80);
 		available_books.setLocation(500, 10);
 		available_books.addActionListener(this);
 
@@ -232,10 +233,10 @@ public class MWindow extends JFrame implements ActionListener {
 			h.setVisible(false);
 		} else if (e.getSource().equals(history)) {
 			System.out.println("history");
+			h.setVisible(true);
 			bb.setVisible(false);
 			rb.setVisible(false);
 			ab.setVisible(false);
-			h.setVisible(true);
 		}
 	}
 }

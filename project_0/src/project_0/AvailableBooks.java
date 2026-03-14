@@ -3,39 +3,40 @@ package project_0;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.JPanel;
 
 
 public class AvailableBooks extends JPanel{
 
     // Sample book database
-    String[][] books = {
-            {"To Kill a Mockingbird", "Harper Lee",          "4"},
-            {"1984",                  "George Orwell",       "4"},
-            {"Pride and Prejudice",   "Jane Austen",         "2"},
-            {"The Great Gatsby",      "F. Scott Fitzgerald", "3"},
-            {"Moby Dick",             "Herman Melville",     "5"},
-            {"War and Peace",         "Leo Tolstoy",         "4"},
-            {"Skibidi UwU",           "J.R.R. Tolkien",      "6"}
-    };
+	Colors c = new Colors();
+    String[][] books = {};
 
     JFrame frame;
-    JTextField searchField;
+    JTextField search_field;
     JTextArea resultsArea;
     
 
     public AvailableBooks() {
 
     	this.setBounds(20,60,1040,650);
-        this.setLayout(new FlowLayout());
+        this.setLayout(new BorderLayout());
         this.setVisible(false);
+        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.dry_sage));
+        
+        JPanel header = new JPanel();
+        header.setLayout(null);
+        header.setPreferredSize(new Dimension(0,50));
+        header.setBackground(c.dark_walnut);
 
-        JLabel title = new JLabel("Library Book Search");
-        title.setFont(new Font("Arial", Font.BOLD, 18));
+        JLabel title = new JLabel("Available Books");
+        title.setBounds(10,10,title.getText().length()*14, title.getFont().getSize()*2);
+	    title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 25));
+	    title.setForeground(c.almond_cream);
         
         JPanel topPanel = new JPanel(new BorderLayout());
 
-        searchField = new JTextField(20);
+        search_field = new JTextField(20);
+        search_field.setBounds(800,40,100,20);
 
         JButton searchButton = new JButton("Search");
         
@@ -53,8 +54,9 @@ public class AvailableBooks extends JPanel{
             }
         });
 
-        this.add(title);
-        this.add(searchField);
+        header.add(search_field);
+        header.add(title);
+        this.add(header, BorderLayout.NORTH);
         this.add(searchButton);
         this.add(scroll);
 
@@ -62,7 +64,7 @@ public class AvailableBooks extends JPanel{
 
     public void searchBooks() {
 
-        String query = searchField.getText().toLowerCase();
+        String query = search_field.getText().toLowerCase();
         resultsArea.setText("");
 
         boolean found = false;

@@ -9,7 +9,7 @@ public class Colors{
 	Color coffee_bean = new Color(127, 85, 57);
 	Color camel = new Color(166, 138, 100);
 	Color khaki_beige = new Color(182, 173, 144);
-	Color dry_dage = new Color(164, 172, 134);
+	Color dry_sage = new Color(164, 172, 134);
 	Color almond_cream = new Color(237, 224, 212);
 	Color dusty_olive = new Color(101, 109, 74);
 	Color ebony = new Color(65, 72, 51);

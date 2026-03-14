@@ -72,7 +72,7 @@ public class RequestBooks extends JPanel {
         requesterNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
         requesterNameLabel.setForeground(new Color(80, 50, 30));
         
-        JLabel contactNoLabel = new JLabel("Contact No:");
+        JLabel contactNoLabel = new JLabel("Contact No (optional) :");
         contactNoLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
         contactNoLabel.setForeground(new Color(80, 50, 30));
         
@@ -128,7 +128,7 @@ public class RequestBooks extends JPanel {
         tableLabel.setForeground(new Color(80, 50, 30));
         
         // Create Table
-        String[] columnNames = {"No.", "Book Name", "Requester Name", "Contact No."};
+        String[] columnNames = {"No.", "Book Name", "Requester Name", "Contact No. Optional"};
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -185,7 +185,7 @@ public class RequestBooks extends JPanel {
         String requesterName = requesterNameField.getText().trim();
         String contactNo = contactNoField.getText().trim();
         
-        if (bookName.isEmpty() || requesterName.isEmpty() || contactNo.isEmpty()) {
+        if (bookName.isEmpty() || requesterName.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
                 "Please fill in all fields!", 
                 "Input Error", 
