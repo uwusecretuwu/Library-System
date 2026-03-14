@@ -10,6 +10,7 @@ public class RequestBooks extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setBackground(new Color(0,0,0));
 		this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, new Color(153, 88, 42)));
+		this.setVisible(false);
 		
 		JPanel request_book_header = new JPanel(new BorderLayout());
 		request_book_header.setBackground(new Color(153, 88, 42));

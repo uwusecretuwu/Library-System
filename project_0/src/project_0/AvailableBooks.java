@@ -28,6 +28,7 @@ public class AvailableBooks extends JPanel{
 
     	this.setBounds(20,60,1040,650);
         this.setLayout(new FlowLayout());
+        this.setVisible(false);
 
         JLabel title = new JLabel("Library Book Search");
         title.setFont(new Font("Arial", Font.BOLD, 18));

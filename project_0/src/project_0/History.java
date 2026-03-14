@@ -12,5 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 class History extends JPanel {
-    
+	
+	Colors c = new Colors();
+	History() {
+	    this.setBounds(20,60,1040,650);
+	    this.setBackground(c.black);
+	    this.setLayout(new BorderLayout());
+	    
+	}
 }

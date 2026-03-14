@@ -18,6 +18,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 
         setBounds(20,60,1040,650);
         setLayout(new BorderLayout());
+        setVisible(false);
         //all stuffs sa taas
         top = new JPanel(new BorderLayout());
         top.setBackground(new Color(90, 30, 0));
