@@ -25,13 +25,17 @@ class History extends JPanel {
 	    header.setPreferredSize(new Dimension(0,100));
 	    header.setBackground(c.ebony);
 	    
-	    JLabel title = new JLabel("Skibidi");
-	    title.setSize(100, title.getFont().getSize()*10);
-	    title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 10));
+	    JLabel title = new JLabel("skibdi");
+	    title.setBounds(100,20,title.getText().length()*14, title.getFont().getSize()*2);
+	    title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 28));
 	    title.setBackground(c.ebony);
 	    title.setForeground(c.almond_cream);
 	    
+	    JPanel center_container = new JPanel();
+	    center_container.setBackground(c.khaki_beige);
+	    
 	    header.add(title);
 	    this.add(header, BorderLayout.NORTH);
+	    this.add(center_container);
 	}
 }
