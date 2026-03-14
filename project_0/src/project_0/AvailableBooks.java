@@ -1,10 +1,12 @@
+package project_0;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 
 
-public class LibrarySearchGUI {
+public class AvailableBooks extends JPanel{
 
     // Sample book database
     String[][] books = {
@@ -22,13 +24,10 @@ public class LibrarySearchGUI {
     JTextArea resultsArea;
     
 
-    public LibrarySearchGUI() {
+    public AvailableBooks() {
 
-        frame = new JFrame("Library Search System");
-        frame.setSize(450, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
-        frame.setLocationRelativeTo(null);
+    	this.setBounds(20,60,1040,650);
+        this.setLayout(new FlowLayout());
 
         JLabel title = new JLabel("Library Book Search");
         title.setFont(new Font("Arial", Font.BOLD, 18));
@@ -53,12 +52,11 @@ public class LibrarySearchGUI {
             }
         });
 
-        frame.add(title);
-        frame.add(searchField);
-        frame.add(searchButton);
-        frame.add(scroll);
+        this.add(title);
+        this.add(searchField);
+        this.add(searchButton);
+        this.add(scroll);
 
-        frame.setVisible(true);
     }
 
     public void searchBooks() {
@@ -89,7 +87,4 @@ public class LibrarySearchGUI {
         }
     }
 
-    public static void main(String[] args) {
-        new LibrarySearchGUI();
-    }
 }

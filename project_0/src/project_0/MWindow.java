@@ -15,6 +15,7 @@ public class MWindow extends JFrame implements ActionListener {
 	
 	JTextPane book_page_content = new JTextPane();
 
+	AvailableBooks ab = new AvailableBooks();
 	BorrowedBooks bb = new BorrowedBooks();
 	RequestBooks rb = new RequestBooks();
 
@@ -157,6 +158,7 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.setBackground(almond_cream);
 
 		// Adding things to the Window
+		center_container.add(ab);
 		center_container.add(bb);
 		center_container.add(rb);
 		header.add(searchbar);
@@ -210,22 +212,24 @@ public class MWindow extends JFrame implements ActionListener {
 			book_cover.setVisible(false);
 		} else if (e.getSource().equals(available_books)) {
 			System.out.println("available books");
+			ab.setVisible(true);
 			bb.setVisible(false);
 			rb.setVisible(false);
 		} else if (e.getSource().equals(borrowed_books)) {
 			System.out.println("borrowed books");
 			bb.setVisible(true);
-
+			ab.setVisible(false);
 			rb.setVisible(false);
 		} else if (e.getSource().equals(requested_books)) {
 			System.out.println("requested books");
 			rb.setVisible(true);
-
+			ab.setVisible(false);
 			bb.setVisible(false);
 		} else if (e.getSource().equals(history)) {
 			System.out.println("history");
 			bb.setVisible(false);
 			rb.setVisible(false);
+			ab.setVisible(false);
 		}
 	}
 }
