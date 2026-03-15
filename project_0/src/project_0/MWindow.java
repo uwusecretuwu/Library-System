@@ -160,6 +160,8 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.setBackground(almond_cream);
 
 		// Adding things to the Window
+		bb.setVisible(true);
+		h.setVisible(false);
 		center_container.add(ab);
 		center_container.add(bb);
 		center_container.add(rb);

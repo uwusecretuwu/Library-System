@@ -6,6 +6,12 @@ import java.time.LocalDate;
 
 public class AddBorrowedBooks extends JDialog implements ActionListener 
 {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	} /*
     private final JTextField txttitle;
     private final JTextField txtauthor;
     private final JTextField txtname;
@@ -14,7 +20,7 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
     private final JButton btnadd;
     private final BorrowedBooks mainm;
     
-    public AddBorrowedBooks(BorrowedBooks mainm) {
+   /* public AddBorrowedBooks(BorrowedBooks mainm) {
         super((Frame) SwingUtilities.getWindowAncestor(mainm), "Borrow Book", true);
         this.mainm = mainm;
 
@@ -63,6 +69,5 @@ public class AddBorrowedBooks extends JDialog implements ActionListener
             } else {
                 JOptionPane.showMessageDialog(this, "Please fill in all fields.");
             }
-        }
+        }*/
     }
-}
