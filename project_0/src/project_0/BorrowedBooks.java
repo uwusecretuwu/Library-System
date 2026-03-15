@@ -15,9 +15,10 @@ public class heheheh extends JPanel implements ActionListener
     JPanel down;
     JPanel rightpanel;
     JPanel leftpanel;
+    JPanel header;
     JLabel title, listtitle, lblbooktitle, lblauthor, lblname, lblcontact, lblborrowed;
     JTextField txtbooktitle, txtauthor, txtname, txtcontact, txtborrowed;
-    JButton btnadd;
+    JButton btnadd, btnremove;
     JTable table;
     
     public heheheh()
@@ -52,11 +53,26 @@ public class heheheh extends JPanel implements ActionListener
         leftpanel.setBackground(new Color(245,235,210));
         center.add(leftpanel, BorderLayout.CENTER); 
         
+        header = new JPanel(new BorderLayout());
+        header.setBackground(new Color(245,235,210));
+        leftpanel.add(header, BorderLayout.NORTH);
+        
         listtitle = new JLabel("List of Borrowed Books");
         listtitle.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
         listtitle.setForeground(new Color(90,30,0));
         listtitle.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 0));
-        leftpanel.add(listtitle, BorderLayout.NORTH);
+        header.add(listtitle, BorderLayout.WEST);
+        
+        btnremove = new JButton("REMOVE");
+        btnremove.setFont(new Font("Times New Roman", Font.BOLD, 10));
+        btnremove.addActionListener(this);
+        btnremove.setBackground(new Color(90,30,0));
+        btnremove.setForeground(new Color(245,235,210));
+        btnremove.setPreferredSize(new Dimension(80,20));
+        header.add(btnremove, BorderLayout.EAST);
+        
+        
+        
      
         String[] columntitlez = {"Book Title", "Author", "Name", "Contact No.", "Borrowed Date"};
         DefaultTableModel tbl = new DefaultTableModel(columntitlez, 0);
@@ -156,26 +172,39 @@ public class heheheh extends JPanel implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-        String title = txtbooktitle.getText();
+       
+     if(e.getSource() == btnadd) 
+     {
+        String titleText = txtbooktitle.getText();
         String author = txtauthor.getText();
         String name = txtname.getText();
         String contact = txtcontact.getText();
         String borrowed = txtborrowed.getText();
         
-        if(title.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty() || borrowed.isEmpty()) 
+        if(titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) 
         {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{title, author, name, contact, borrowed});
+        model.addRow(new Object[]{titleText, author, name, contact, borrowed});
         
         txtbooktitle.setText("");
         txtauthor.setText("");
         txtname.setText("");
         txtcontact.setText("");
+
+    } else if(e.getSource() == btnremove) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int selectedRow = table.getSelectedRow();
+        
+        if(selectedRow != -1) {
+            model.removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to remove.");
+        }
     }
-    
-    
 }
+}
+    
 
