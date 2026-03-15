@@ -1,119 +1,181 @@
 package project_0;
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import javax.swing.table.*;
+import java.time.LocalDate;
 
-public class BorrowedBooks extends JPanel implements ActionListener {
-
-	int scroll_speed = 16;
-    JButton btnadd;
-    JLabel title;
-    JPanel gridpanel;
+public class heheheh extends JPanel implements ActionListener
+{
+   
     JPanel top;
-    JPanel right;
     JPanel center;
+    JPanel side1;
+    JPanel side2;
+    JPanel down;
+    JPanel rightpanel;
+    JPanel leftpanel;
+    JLabel title, listtitle, lblbooktitle, lblauthor, lblname, lblcontact, lblborrowed;
+    JTextField txtbooktitle, txtauthor, txtname, txtcontact, txtborrowed;
+    JButton btnadd;
+    JTable table;
     
-    public BorrowedBooks() {
-    	
-
-        setBounds(20,60,1040,650);
+    public heheheh()
+    {
+        
         setLayout(new BorderLayout());
-        setVisible(false);
-        //all stuffs sa taas
         top = new JPanel(new BorderLayout());
-        top.setBackground(new Color(90, 30, 0));
+        add(top, BorderLayout.NORTH);
+        top.setBackground(new Color(90,30,0));
+        top.setPreferredSize(new Dimension(20,70));
+        
         title = new JLabel("BORROWED BOOKS");
-        title.setFont(new Font("Times New Roman", Font.BOLD, 28));
-        title.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
-        title.setForeground(Color.WHITE);
+        title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));
+        title.setForeground(new Color(245,235,210));
+        title.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         top.add(title, BorderLayout.WEST);
-        //bttn right side ;]
+
         btnadd = new JButton("ADD");
-        btnadd.setFont(new Font("Times New Roman", Font.BOLD, 10));
+        btnadd.setFont(new Font("Times New Roman", Font.BOLD, 15));
         btnadd.addActionListener(this);
         btnadd.setBackground(new Color(245,235,210));
-        //bttn placement
-        right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 19, 16));
-        right.setOpaque(false);
-        right.add(btnadd);
+        btnadd.setPreferredSize(new Dimension(200,40));
+        
+        center = new JPanel();
+        center.setBackground(new Color(90,30,0));
+        add(center, BorderLayout.CENTER);
+        center.setLayout(new BorderLayout(10, 0));
 
-        top.add(right, BorderLayout.EAST);
-        add(top, BorderLayout.NORTH);
-        //borders
-        JPanel side2= new JPanel();
-        JPanel side1= new JPanel();
-        JPanel down= new JPanel();
-        side1.setBackground(new Color(90,30,0));
+        leftpanel = new JPanel();
+        leftpanel.setLayout(new BorderLayout());
+        leftpanel.setOpaque(true);
+        leftpanel.setBackground(new Color(245,235,210));
+        center.add(leftpanel, BorderLayout.CENTER); 
+        
+        listtitle = new JLabel("List of Borrowed Books");
+        listtitle.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+        listtitle.setForeground(new Color(90,30,0));
+        listtitle.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 0));
+        leftpanel.add(listtitle, BorderLayout.NORTH);
+     
+        String[] columntitlez = {"Book Title", "Author", "Name", "Contact No.", "Borrowed Date"};
+        DefaultTableModel tbl = new DefaultTableModel(columntitlez, 0);
+        
+        table = new JTable(tbl);
+        table.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        table.setBackground(new Color(245,235,210));
+        table.setRowHeight(28);
+        table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
+        table.getTableHeader().setBackground(new Color(245, 235, 210));
+        table.getTableHeader().setForeground(new Color(90,30,0));
+        table.setSelectionBackground(new Color(245, 235, 210));
+        table.setSelectionForeground(Color.WHITE);
+        table.setGridColor(new Color(90, 30, 0));
+        table.setShowGrid(true);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.getViewport().setBackground(new Color(245, 235, 210));
+        leftpanel.add(scrollPane, BorderLayout.CENTER);
+        
+        rightpanel = new JPanel(new FlowLayout());
+        rightpanel.setOpaque(true);
+        rightpanel.setBackground(new Color(245,235,210));
+        rightpanel.setPreferredSize(new Dimension(250, 0)); 
+        center.add(rightpanel, BorderLayout.EAST);
+        rightpanel.setLayout(new BoxLayout(rightpanel, BoxLayout.Y_AXIS));
+        rightpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        
+        lblbooktitle = new JLabel("BOOK TITLE");
+        lblbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        lblbooktitle.setForeground(new Color(90,30,0));
+        lblbooktitle.setBounds(10, 10, 50, 30);
+        lblauthor = new JLabel("AUTHOR");
+        lblauthor.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        lblauthor.setForeground(new Color(90,30,0));
+        lblauthor.setBounds(10, 10, 50, 30);
+        lblname = new JLabel("NAME");
+        lblname.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        lblname.setForeground(new Color(90,30,0));
+        lblname.setBounds(10, 10, 50, 30);
+        lblcontact= new JLabel("CONTACT NUMBER");
+        lblcontact.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        lblcontact.setForeground(new Color(90,30,0));
+        lblcontact.setBounds(10, 10, 50, 30);
+        lblborrowed = new JLabel("BORROWED");
+        lblborrowed.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        lblborrowed.setForeground(new Color(90,30,0));
+        lblborrowed.setBounds(10, 10, 50, 30);
+        txtbooktitle = new JTextField(10);
+        txtbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        txtauthor = new JTextField(10);
+        txtauthor.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        txtname= new JTextField(10);
+        txtname.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        txtcontact = new JTextField(10);
+        txtcontact.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        txtborrowed= new JTextField(10);
+        txtborrowed.setText(LocalDate.now().toString());
+        txtborrowed.setEditable(false);
+        
+        rightpanel.add(lblbooktitle);
+        rightpanel.add(txtbooktitle);
+        rightpanel.add(Box.createVerticalStrut(10));
+        rightpanel.add(lblauthor);
+        rightpanel.add(txtauthor);
+        rightpanel.add(Box.createVerticalStrut(10));
+        rightpanel.add(lblname);
+        rightpanel.add(txtname);
+        rightpanel.add(Box.createVerticalStrut(10));
+        rightpanel.add(lblcontact);
+        rightpanel.add(txtcontact);
+        rightpanel.add(Box.createVerticalStrut(10));
+        rightpanel.add(lblborrowed);
+        rightpanel.add(txtborrowed);
+        rightpanel.add(Box.createVerticalStrut(20));
+
+        btnadd.setAlignmentX(Component.LEFT_ALIGNMENT);
+        rightpanel.add(btnadd);
+        
+        
+        side1 = new JPanel();
+        side1.setBackground(new Color(90,30,10));
         add(side1, BorderLayout.EAST);
-        side2.setBackground(new Color(90,30,0));
+        side2 = new JPanel();
+        side2.setBackground(new Color(90,30,10));
         add(side2, BorderLayout.WEST);
-        down.setBackground(new Color(90,30,0));
+        down = new JPanel();
+        down.setBackground(new Color(90,30,10));
         add(down, BorderLayout.SOUTH);
         
-        //grids and shits (center panel) adn where informations be stored
-        center = new JPanel(new BorderLayout());
-        center.setBackground(new Color(245, 235, 210));
-        add(center, BorderLayout.CENTER);
-        gridpanel = new JPanel();
-        gridpanel.setLayout(new BoxLayout(gridpanel, BoxLayout.Y_AXIS));
-        gridpanel.setOpaque(false);
-        gridpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));       
         
-        JScrollPane scroll = new JScrollPane(gridpanel);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.getVerticalScrollBar().setUnitIncrement(scroll_speed); //speed scroll
-        scroll.getViewport().setBackground(new Color(245, 235, 210));
-        center.add(scroll, BorderLayout.CENTER);
         
     }
-
-    public void addBook(String title, String author, String name, String contactno, String dateborrowed) 
-    {
-//now we border panels to the grids
-        JPanel border = new JPanel();
-        border.setLayout(new BorderLayout(10,10));
-        border.setBackground(new Color(245, 235, 210));
-        border.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(153, 88, 42)));
-        border.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
-        border.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JTextArea txtarea = new JTextArea(" Book Title: " + title +
-                                          "\n Author: " + author +
-                                          "\n Name: " + name +
-                                          "\n Contact Number: " + contactno+
-                                          "\n Date Borrowed: "+dateborrowed );
-        
-        txtarea.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        txtarea.setBackground(new Color(245, 235, 210));
-        txtarea.setEditable(false);
-        txtarea.setLineWrap(true);
-        txtarea.setWrapStyleWord(true);
-        border.add(txtarea, BorderLayout.CENTER);              
-
-        JButton remover = new JButton("REMOVE");
-        remover.setBackground(new Color(90,30,0));
-        remover.setForeground(Color.WHITE);
-        JPanel buttonpanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonpanel.setOpaque(false);
-        buttonpanel.add(remover);
-        border.add(buttonpanel, BorderLayout.SOUTH);
-        remover.addActionListener(e -> {
-        gridpanel.remove(border);
-        gridpanel.revalidate();
-        gridpanel.repaint();
-        });
-        gridpanel.add(border);
-        gridpanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        gridpanel.revalidate();
-        gridpanel.repaint();
-    }
+    
+    
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == btnadd) {
-            AddBorrowedBooks bb = new AddBorrowedBooks(this);
-            bb.setVisible(true);
+    public void actionPerformed(ActionEvent e) 
+    {
+        String title = txtbooktitle.getText();
+        String author = txtauthor.getText();
+        String name = txtname.getText();
+        String contact = txtcontact.getText();
+        String borrowed = txtborrowed.getText();
+        
+        if(title.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty() || borrowed.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+            return;
         }
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(new Object[]{title, author, name, contact, borrowed});
+        
+        txtbooktitle.setText("");
+        txtauthor.setText("");
+        txtname.setText("");
+        txtcontact.setText("");
     }
+    
+    
 }
+
