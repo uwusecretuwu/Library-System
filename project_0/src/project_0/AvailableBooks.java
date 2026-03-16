@@ -4,90 +4,106 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
 public class AvailableBooks extends JPanel{
 
-    // Sample book database
+	// Sample book database
 	Colors c = new Colors();
-    String[][] books = {};
+	
+	String[] columns = { "books", "author", "quantity", "date added" };
+	String[][] data = { {"Harry Potter", "J.K. Rowling", "9823734", "1101,11,54"},
+			{"my lil pony", "Jess", "9823734", "1101,11,54"}};
 
-    JFrame frame;
-    JTextField search_field;
-    JTextArea resultsArea;
-    
+	JPanel right_container, center_container, center_container_header;
+	JLabel table_title;
+	JFrame frame;
+	JButton search_button, remove_button;
+	JTextField searchbar;
 
-    public AvailableBooks() {
+	public AvailableBooks() {
 
-    	this.setBounds(20,60,1040,650);
-        this.setLayout(new BorderLayout());
-        this.setVisible(false);
-        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.dark_walnut));
-        
-        JPanel header = new JPanel();
-        header.setLayout(null);
-        header.setPreferredSize(new Dimension(0,40));
-        header.setBackground(c.dark_walnut);
+		this.setBounds(20, 60, 1040, 650);
+		this.setLayout(new BorderLayout());
+		this.setVisible(false);
+		this.setBorder(BorderFactory.createMatteBorder(0, 10, 10, 10, c.dark_walnut));
 
-        JLabel title = new JLabel("AVAILABLE BOOKS");
-        title.setBounds(15,5,title.getText().length()*19, title.getFont().getSize()*2);
-	    title.setFont(new Font("Times New Roman", Font.BOLD, 28));
-	    title.setForeground(c.almond_cream);
-        
-        JPanel topPanel = new JPanel(new BorderLayout());
+		JPanel header = new JPanel();
+		header.setLayout(new BorderLayout());
+		header.setPreferredSize(new Dimension(0, 70));
+		header.setBackground(c.dark_walnut);
+		
+		JLabel title = new JLabel(" AVAILABLE BOOKS");
+		title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));
+		title.setForeground(c.almond_cream);
 
-        search_field = new JTextField(20);
-        search_field.setBounds(800,40,100,20);
+		//edit here for adding new books
+		right_container = new JPanel();
+		right_container.setLayout(new GridBagLayout());
+		right_container.setPreferredSize(new Dimension(250, 0));
+		right_container.setBackground(c.coffee_bean);
 
-        JButton searchButton = new JButton("Search");
-        
-        resultsArea = new JTextArea();
-        resultsArea.setEditable(false);
-        JScrollPane Scroll = new JScrollPane(resultsArea);
+		center_container = new JPanel();
+		center_container.setLayout(new BorderLayout());
+		center_container.setBackground(c.charcoal_brown);
+		center_container.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, c.dark_walnut));
 
-        resultsArea = new JTextArea(15, 35);
-        resultsArea.setEditable(false);
-        JScrollPane scroll = new JScrollPane(resultsArea);
+		center_container_header = new JPanel();
+		center_container_header.setLayout(null);
+		center_container_header.setPreferredSize(new Dimension(0, 40));
+		center_container_header.setBackground(c.coffee_bean);
+		center_container.add(center_container_header, BorderLayout.NORTH);
 
-        searchButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchBooks();
-            }
-        });
+		searchbar = new JTextField();
+		searchbar.setBounds(10,10,250,20);
+		center_container_header.add(searchbar);
 
-        header.add(search_field);
-        header.add(title);
-        this.add(header, BorderLayout.NORTH);
-        this.add(searchButton);
-        this.add(scroll);
+		search_button = new JButton("Search");
+		search_button.setBounds(270, 10, 100,20);
+		search_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchBooks();
+			}
+		});
+		center_container_header.add(search_button, BorderLayout.EAST);
+		
+		remove_button = new JButton("remove");
+		remove_button.setBounds(650, 10, 100,20);
+		center_container_header.add(remove_button);
 
-    }
+		JTable table = new JTable(data,columns);
+		table.setPreferredScrollableViewportSize(new Dimension(100,100));
+		table.setFillsViewportHeight(true);
+		//edit here for style
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		table.setBackground(new Color(245, 235, 210));
+		table.setRowHeight(28);
+		table.setSelectionBackground(c.coffee_bean);
+		table.setSelectionForeground(c.almond_cream);
+		JScrollPane scroll = new JScrollPane(table);
+		center_container.add(scroll);
 
-    public void searchBooks() {
 
-        String query = search_field.getText().toLowerCase();
-        resultsArea.setText("");
+		this.add(right_container, BorderLayout.EAST);
+		header.add(title, BorderLayout.WEST);
+		this.add(center_container, BorderLayout.CENTER);
+		this.add(header, BorderLayout.NORTH);
 
-        boolean found = false;
+	}
 
-        for (String[] book : books) {
-            if (book[0].toLowerCase().contains(query) ||
-                book[1].toLowerCase().contains(query)) {
+	public void searchBooks() {
+		String query = searchbar.getText().toLowerCase();
+		boolean found = false;
 
-                resultsArea.append
-                    (
-                    "Title: " + book[0] +
-                    "\nAuthor: " + book[1] +
-                    "\nAvailable Copies: " + book[2] +
-                    "\n------------------------\n"
-                   );
-                resultsArea.append(book[0] + " - " + book[1] + "\n");
-                found = true;
-            }
-        }
+		for (int i = 0; i < data.length; i++) {
+			if(data[i][0].toLowerCase().equalsIgnoreCase(query)) {
+				System.out.print("founds");
+				found = true;
+				//make it so that the scrollbar scrolls to the location of the book the user is searching for
+			}
+		}
 
-        if (!found) {
-            resultsArea.setText("No books found.");
-        }
-    }
+		if (!found) {
+			//please make JOptionPane isntead when no book is found
+		}
+	}
 
 }

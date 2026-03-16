@@ -24,7 +24,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		top = new JPanel(new BorderLayout());
 		add(top, BorderLayout.NORTH);
 		top.setBackground(new Color(90, 30, 0));
-		top.setPreferredSize(new Dimension(20, 70));
+		top.setPreferredSize(new Dimension(0, 70));
 
 		title = new JLabel("BORROWED BOOKS");
 		title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));
@@ -166,6 +166,8 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 			String name = txtname.getText();
 			String contact = txtcontact.getText();
 			String borrowed = txtborrowed.getText();
+			
+			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
 
 			if (titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields.");

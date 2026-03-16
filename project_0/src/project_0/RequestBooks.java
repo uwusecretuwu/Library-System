@@ -185,6 +185,8 @@ public class RequestBooks extends JPanel {
         String requesterName = requesterNameField.getText().trim();
         String contactNo = contactNoField.getText().trim();
         
+        History.addRequestedBooks(bookName, requesterName, contactNo);
+        
         if (bookName.isEmpty() || requesterName.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
                 "Please fill in all fields!", 

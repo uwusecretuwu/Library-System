@@ -19,7 +19,7 @@ public class Main {
 	static MWindow window = new MWindow();
 
 	public static void main(String[] args) {
-		splash_screen Splash = new splash_screen();
+		//plash_screen Splash = new splash_screen();
 		window.setVisible(true);
 
 	}
