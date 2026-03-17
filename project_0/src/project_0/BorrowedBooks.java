@@ -170,7 +170,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
 
 			if (titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+				JOptionPane.showMessageDialog(this, "Please select a row to remove.");
 				return;
 			}
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -188,7 +188,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 			if (selectedRow != -1) {
 				model.removeRow(selectedRow);
 			} else {
-				JOptionPane.showMessageDialog(null, "Please select a row to remove.");
+				JOptionPane.showMessageDialog(this, "Please select a row to remove.");
 			}
 		}
 	}

@@ -16,9 +16,11 @@ public class AvailableBooks extends JPanel{
 	JPanel right_container, center_container, center_container_header;
 	JLabel table_title;
 	JFrame frame;
+	
 	JButton search_button, remove_button;
 	JTextField searchbar;
 
+	GridBagConstraints gbc = new GridBagConstraints();
 	public AvailableBooks() {
 
 		this.setBounds(20, 60, 1040, 650);
