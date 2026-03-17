@@ -10,9 +10,9 @@ import javax.swing.*;
 public class MWindow extends JFrame implements ActionListener {
 
 	// Declaration
-	
+
 	File files;
-	
+
 	JTextPane book_page_content = new JTextPane();
 
 	AvailableBooks ab = new AvailableBooks();
@@ -22,7 +22,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
 
-	Colors color = new Colors();
+	Colors c = new Colors();
 	Images img = new Images();
 
 	Color coffee_bean = new Color(127, 85, 57);
@@ -32,7 +32,7 @@ public class MWindow extends JFrame implements ActionListener {
 	Color ebony = new Color(65, 72, 51);
 
 	JPanel header, header_left, header_buttons;
-	JLabel book_cover_title;
+	JLabel book_cover_title,searchbar_title;
 	JPanel bb_panel, center_container, left_container, book_cover, book_page;
 	JLayeredPane left_pane;
 	JTextField searchbar;
@@ -50,7 +50,7 @@ public class MWindow extends JFrame implements ActionListener {
 		this.setSize(new Dimension(460, 730));
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setAlwaysOnTop(true);
-		this.getContentPane().setBackground(color.almond_cream);
+		this.getContentPane().setBackground(c.almond_cream);
 
 		// Panels
 		header = new JPanel(null);
@@ -67,6 +67,13 @@ public class MWindow extends JFrame implements ActionListener {
 		searchbar_button.addActionListener(this);
 		header.add(searchbar_button);
 		
+		searchbar_title = new JLabel("search");
+		searchbar_title.setBounds(150, 10, 100, 30);
+		searchbar_title.setBackground(c.camel);
+		searchbar_title.setOpaque(true);
+		searchbar_title.setHorizontalAlignment(SwingConstants.CENTER);
+		header.add(searchbar_title);
+
 		search_info = new JLabel();
 		search_info.setBounds(95, 75, 205, 20);
 		search_info.setBackground(almond_cream);
@@ -77,8 +84,7 @@ public class MWindow extends JFrame implements ActionListener {
 		// books in the header
 		LabelMaker books = new LabelMaker("Images/requestedbooks.png");
 		books.labelmaker(header, 0, 0, 30, 95, coffee_bean);
-		books.labelmaker(header, 300, 10, 30, 85, camel);
-		books.labelmaker(header, 150, 10, 100, 30, camel);
+		books.labelmaker(header, 300, 10, 30, 85, c.camel);
 		books.labelmaker(header, 330, 20, 20, 75, coffee_bean);
 		books.labelmaker(header, 350, 15, 20, 80, ebony);
 		books.labelmaker(header, 370, 10, 10, 85, coffee_bean);
@@ -103,7 +109,7 @@ public class MWindow extends JFrame implements ActionListener {
 		history.setLocation(1200, 10);
 		history.addActionListener(this);
 
-		notification_button = new ButtonMaker("Images/requestedbooks.png", header, 75,80);
+		notification_button = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
 		notification_button.setLocation(1400, 10);
 		notification_button.addActionListener(this);
 
@@ -114,8 +120,8 @@ public class MWindow extends JFrame implements ActionListener {
 
 		left_pane = new JLayeredPane();
 		left_pane.setLayout(null);
-		left_pane.setBounds(0,0,450,600);
-		
+		left_pane.setBounds(0, 0, 450, 600);
+
 		book_cover = new JPanel(null);
 		book_cover.setBounds(0, 0, 450, 600);
 		book_cover.setBackground(new Color(153, 88, 42));
@@ -126,7 +132,7 @@ public class MWindow extends JFrame implements ActionListener {
 		book_mark.setBackground(new Color(153, 39, 11));
 		book_mark.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(67, 17, 5)));
 
-		book_opener = new JButton("Read");
+		book_opener = new JButton("Open");
 		book_opener.setBounds(300, 550, 100, 30);
 		book_opener.addActionListener(this);
 
@@ -151,7 +157,7 @@ public class MWindow extends JFrame implements ActionListener {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.getViewport().setBackground(new Color(245, 235, 210));
-        scroll.getVerticalScrollBar().setUnitIncrement(7);
+		scroll.getVerticalScrollBar().setUnitIncrement(7);
 		book_page.add(scroll);
 
 		center_container = new JPanel();
@@ -160,25 +166,23 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.setBackground(almond_cream);
 
 		// Adding things to the Window
-		bb.setVisible(true);
-		h.setVisible(false);
 		center_container.add(ab);
 		center_container.add(bb);
 		center_container.add(rb);
 		center_container.add(h);
-		
+
 		header.add(searchbar);
 		book_cover.add(book_opener);
 		book_cover.add(book_mark);
 		book_cover.add(book_cover_title);
 		book_cover.add(book_cover_title, BorderLayout.CENTER);
 		book_page_content.setVisible(false);
-		
+
 		this.add(left_container, BorderLayout.WEST);
 		this.add(header, BorderLayout.NORTH);
 		this.add(center_container, BorderLayout.CENTER);
 		this.repaint();
-		
+
 		left_container.add(left_pane);
 		left_pane.add(book_cover);
 		left_pane.add(book_page);
@@ -192,20 +196,20 @@ public class MWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(searchbar_button) && !searchbar.getText().isEmpty()) {
-				String file = searchbar.getText().toLowerCase();
-				files = new File("books/" + file + ".txt");
-				String file_book_name = files.getName();
-				System.out.println(file_book_name); // debug
-				if(files.exists()) {
-					System.out.println(files.exists()); // check
-					book_cover_title.setText(searchbar.getText());
-					search_info.setText("Book Found!");
-					book_cover.setVisible(true);
-				} else {
-					search_info.setText("Book Not Found!");
-					System.out.println("that book does not exist!");
-				}
-				
+			String file = searchbar.getText().toLowerCase();
+			files = new File("books/" + file + ".txt");
+			String file_book_name = files.getName();
+			System.out.println(file_book_name); // debug
+			if (files.exists()) {
+				System.out.println(files.exists()); // check
+				book_cover_title.setText(searchbar.getText());
+				search_info.setText("Book Found!");
+				book_cover.setVisible(true);
+			} else {
+				search_info.setText("Book Not Found!");
+				System.out.println("that book does not exist!");
+			}
+
 		} else if (e.getSource().equals(book_opener) && files.exists()) {
 			try {
 				Main.getFileName(files);

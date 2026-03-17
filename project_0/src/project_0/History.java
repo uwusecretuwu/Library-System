@@ -25,19 +25,19 @@ class History extends JPanel {
         this.setBackground(new Color(242, 236, 222));
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.ebony));
+        this.setVisible(false);
 
         JPanel header = new JPanel();
-        header.setLayout(null);
+        header.setLayout(new BorderLayout());
         header.setPreferredSize(new Dimension(0, 55));
         header.setBackground(c.ebony);
 
-        JLabel title = new JLabel("		HISTORY LOG");
-        title.setBounds(15, 10, title.getText().length() * 14, title.getFont().getSize() * 2);
-        title.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 28));
+        JLabel title = new JLabel(" HISTORY LOG");
+		title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));
         title.setBackground(c.ebony);
         title.setForeground(c.almond_cream);
 
-        header.add(title);
+        header.add(title, BorderLayout.WEST);
         this.add(header, BorderLayout.NORTH);
 
         // center container
@@ -83,7 +83,9 @@ class History extends JPanel {
 
         this.add(scrollPane, BorderLayout.CENTER);
         
-        addBorrowedBooks("sd", "sd", "sd", "sd", "sd");
+        addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
+        addAvailableBooks("fifty shades of grey", "E.L. James","100");
+        addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238" );
     }
 
     private JPanel makeSectionHeader(String text, Color bgColor) {
@@ -143,7 +145,7 @@ class History extends JPanel {
         borrowedPanel.repaint();
     }
 
-    public void addAvailableBooks(String book, String Author, String Contactno) {
+    public void addAvailableBooks(String book, String Author, String quantity) {
         String title = "Available Books";
 
         JPanel panel = new JPanel();
@@ -154,20 +156,20 @@ class History extends JPanel {
                 BorderFactory.createEmptyBorder(6, 10, 6, 10)));
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
 
-        JLabel book2    = new JLabel("<Book Title:"  + book      + "");
-        JLabel author2  = new JLabel("<html><b>Author:"      + Author    + "");
-        JLabel contact2 = new JLabel("Contact No.:" + Contactno + "");
+        JLabel book2    = new JLabel("Book Title:"  + book + "");
+        JLabel author2  = new JLabel("Author:"      + Author    + "");
+        JLabel book_quantity = new JLabel("Quantity :" + quantity + "");
 
         Font f = new Font("Times New Roman", Font.PLAIN, 14);
         Color fg = new Color(40, 30, 20);
 
         book2.setFont(f);    book2.setForeground(fg);
         author2.setFont(f);  author2.setForeground(fg);
-        contact2.setFont(f); contact2.setForeground(fg);
+        book_quantity.setFont(f); book_quantity.setForeground(fg);
 
         panel.add(book2);
         panel.add(author2);
-        panel.add(contact2);
+        panel.add(book_quantity);
 
         availablePanel.add(panel);
         availablePanel.add(makeSpacer(new Color(235, 255, 235)));

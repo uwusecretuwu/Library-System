@@ -21,6 +21,8 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		// the center container of the MWindow is null
 		this.setBounds(20, 60, 1040, 650);
 		this.setLayout(new BorderLayout());
+		this.setVisible(false);
+		
 		top = new JPanel(new BorderLayout());
 		add(top, BorderLayout.NORTH);
 		top.setBackground(new Color(90, 30, 0));
