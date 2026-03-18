@@ -39,9 +39,16 @@ public class AvailableBooks extends JPanel{
 
 		//edit here for adding new books
 		right_container = new JPanel();
-		right_container.setLayout(new GridBagLayout());
+		right_container.setLayout(null);
 		right_container.setPreferredSize(new Dimension(250, 0));
 		right_container.setBackground(c.coffee_bean);
+		
+		JPanel jessie = new JPanel();
+		jessie.setBounds(0,0,100,100);
+		jessie.setBackground(c.black);
+		right_container.add(jessie);
+		
+		
 
 		center_container = new JPanel();
 		center_container.setLayout(new BorderLayout());
@@ -99,6 +106,8 @@ public class AvailableBooks extends JPanel{
 			if(data[i][0].toLowerCase().equalsIgnoreCase(query)) {
 				System.out.print("founds");
 				found = true;
+				//data[1][2].getChars(i, i, null, i);
+				data[1][2] = "skibidi";
 				//make it so that the scrollbar scrolls to the location of the book the user is searching for
 			}
 		}
