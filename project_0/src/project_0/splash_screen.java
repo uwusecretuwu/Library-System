@@ -55,7 +55,7 @@ public class splash_screen{
 				counter+=1;
 				if(counter == 100) {
 					progressbarisdone = true;
-					//frame.dispose();
+					frame.dispose();
 				}
 		}
 	}

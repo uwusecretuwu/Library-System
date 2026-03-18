@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		new splash_screen();
-		//window.setVisible(true);
+		window.setVisible(true);
 
 	}
 
