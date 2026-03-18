@@ -43,10 +43,18 @@ public class AvailableBooks extends JPanel{
 		right_container.setPreferredSize(new Dimension(250, 0));
 		right_container.setBackground(c.coffee_bean);
 		
-		JPanel jessie = new JPanel();
-		jessie.setBounds(0,0,100,100);
-		jessie.setBackground(c.black);
-		right_container.add(jessie);
+		JPanel right_header = new JPanel();
+		right_header.setBounds(10,10,230,39);
+		right_header.setBackground(c.almond_cream);
+		right_container.add(right_header);
+		right_header.setBorder(BorderFactory.createMatteBorder(2,2,2,2,c.charcoal_brown));
+		right_header.setForeground(c.almond_cream);
+		
+	
+		
+		JLabel right_headertitle = new JLabel("Add Available Books");
+		right_header.add(right_headertitle);
+		right_headertitle.setFont(new Font("Times New Roman", Font.ITALIC, 20));
 		
 		
 
