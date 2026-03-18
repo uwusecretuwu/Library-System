@@ -21,7 +21,6 @@ public class MWindow extends JFrame implements ActionListener {
 	History h = new History();
 
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
-
 	Colors c = new Colors();
 	Images img = new Images();
 

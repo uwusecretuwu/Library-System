@@ -48,8 +48,6 @@ public class AvailableBooks extends JPanel{
 		jessie.setBackground(c.black);
 		right_container.add(jessie);
 		
-		
-
 		center_container = new JPanel();
 		center_container.setLayout(new BorderLayout());
 		center_container.setBackground(c.charcoal_brown);

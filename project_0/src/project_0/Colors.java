@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public class Colors{
 	Color dark_walnut = new Color(88, 47, 14);
+	Color hunter_green = new Color(56, 102, 65);
+
 	Color saddle_brown = new Color(127, 79, 36);
 	Color tofee_brown = new Color(147, 102, 57);
 	Color coffee_bean = new Color(127, 85, 57);
