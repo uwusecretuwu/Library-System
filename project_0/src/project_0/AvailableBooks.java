@@ -44,9 +44,17 @@ public class AvailableBooks extends JPanel{
 		right_container.setBackground(c.coffee_bean);
 		
 		JPanel jessie = new JPanel();
-		jessie.setBounds(0,0,100,100);
-		jessie.setBackground(c.black);
+		jessie.setLayout(new BorderLayout());
+		jessie.setBounds(10,10,229,50);
+		jessie.setBackground(c.coffee_bean);
+		jessie.setBorder(BorderFactory.createMatteBorder(2,2,2,2, c.dry_sage));
 		right_container.add(jessie);
+		
+		JLabel jessieka = new JLabel("Sigma");
+		jessie.add(jessieka);
+		jessieka.setFont(new Font("Times New Roman", Font.ITALIC, 35));
+		jessieka.setForeground(c.almond_cream);
+		jessieka.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		center_container = new JPanel();
 		center_container.setLayout(new BorderLayout());

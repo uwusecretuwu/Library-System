@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.*;
 
 public class splash_screen{
-	
+
 	Colors c = new Colors();
 	boolean progressbarisdone = false;
 	JFrame frame = new JFrame();
