@@ -75,6 +75,7 @@ public class AvailableBooks extends JPanel{
 		table.setPreferredScrollableViewportSize(new Dimension(100,100));
 		table.setFillsViewportHeight(true);
 		//edit here for style
+		table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
 		table.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		table.setBackground(new Color(245, 235, 210));
 		table.setRowHeight(28);
@@ -82,7 +83,6 @@ public class AvailableBooks extends JPanel{
 		table.setSelectionForeground(c.almond_cream);
 		JScrollPane scroll = new JScrollPane(table);
 		center_container.add(scroll);
-
 
 		this.add(right_container, BorderLayout.EAST);
 		header.add(title, BorderLayout.WEST);
