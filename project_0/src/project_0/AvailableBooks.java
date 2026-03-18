@@ -3,6 +3,7 @@ package project_0;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
 
 public class AvailableBooks extends JPanel{
 
@@ -43,13 +44,24 @@ public class AvailableBooks extends JPanel{
 		right_container.setPreferredSize(new Dimension(250, 0));
 		right_container.setBackground(c.coffee_bean);
 		
-		JPanel jessie = new JPanel();
-		jessie.setLayout(new BorderLayout());
-		jessie.setBounds(10,10,229,50);
-		jessie.setBackground(c.coffee_bean);
-		jessie.setBorder(BorderFactory.createMatteBorder(2,2,2,2, c.dry_sage));
-		right_container.add(jessie);
+		JPanel right_header = new JPanel();
+		right_header.setLayout(new BorderLayout());
+		right_header.setBounds(10,10,229,50);
+		right_header.setBackground(c.coffee_bean);
+		right_header.setBorder(BorderFactory.createMatteBorder(2,2,2,2, c.dry_sage));
+		right_container.add(right_header);
 		
+		JLabel right_header_title = new JLabel("Add Available Books");
+		right_header_title.setForeground(c.almond_cream);
+		right_header_title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		right_header_title.setHorizontalAlignment(SwingConstants.CENTER);
+		right_header.add(right_header_title);
+		
+		JLabel clock = new JLabel();
+		clock.setText(LocalDate.now().toString());
+		clock.setBounds(100,100,100,50);
+		clock.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		right_container.add(clock);
 		
 		center_container = new JPanel();
 		center_container.setLayout(new BorderLayout());
