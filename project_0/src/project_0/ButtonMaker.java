@@ -12,9 +12,11 @@ public class ButtonMaker extends JButton {
 	JButton button;
 	int x,y,width,height;
 	String img;
-	ButtonMaker(JPanel cont, int width, int height) {
+	ButtonMaker(String  name, JPanel cont, int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.setText(name);
+		this.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		this.setSize(width,height);
 		cont.add(this);
 	}
