@@ -95,22 +95,22 @@ public class MWindow extends JFrame implements ActionListener {
 
 		// all the buttons on the header
 		//1080
-		available_books = new ButtonMaker(img.book1, header, 260, 80);
+		available_books = new ButtonMaker(header, 260, 80);
 		available_books.setMnemonic(KeyEvent.VK_1);
 		available_books.setLocation(450, 10);
 		available_books.addActionListener(this);
 
-		borrowed_books = new ButtonMaker("Images/requestedbooks.png", header, 260, 80);
+		borrowed_books = new ButtonMaker(header, 260, 80);
 		borrowed_books.setMnemonic(KeyEvent.VK_2);
 		borrowed_books.setLocation(720, 10);
 		borrowed_books.addActionListener(this);
 
-		requested_books = new ButtonMaker("Images/requestedbooks.png", header, 260, 80);
+		requested_books = new ButtonMaker(header, 260, 80);
 		requested_books.setMnemonic(KeyEvent.VK_3);
 		requested_books.setLocation(990, 10);
 		requested_books.addActionListener(this);
 
-		history = new ButtonMaker("Images/requestedbooks.png", header, 260, 80);
+		history = new ButtonMaker(header, 260, 80);
 		history.setMnemonic(KeyEvent.VK_4);
 		history.setLocation(1260, 10);
 		history.addActionListener(this);
