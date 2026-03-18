@@ -21,7 +21,6 @@ public class MWindow extends JFrame implements ActionListener {
 	History h = new History();
 
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
-
 	Colors c = new Colors();
 	Images img = new Images();
 
@@ -95,24 +94,25 @@ public class MWindow extends JFrame implements ActionListener {
 		books.labelmaker(header, 425, 10, 10, 85, coffee_bean);
 
 		// all the buttons on the header
-		available_books = new ButtonMaker(img.book1, header, 85, 80);
+		//1080
+		available_books = new ButtonMaker("Available Books ",header, 260, 50);
 		available_books.setMnemonic(KeyEvent.VK_1);
-		available_books.setLocation(500, 10);
+		available_books.setLocation(450, 30);
 		available_books.addActionListener(this);
 
-		borrowed_books = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		borrowed_books = new ButtonMaker("Borrowed Books",header, 260, 50);
 		borrowed_books.setMnemonic(KeyEvent.VK_2);
-		borrowed_books.setLocation(700, 10);
+		borrowed_books.setLocation(720, 30);
 		borrowed_books.addActionListener(this);
 
-		requested_books = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		requested_books = new ButtonMaker("Requested Books",header, 260, 50);
 		requested_books.setMnemonic(KeyEvent.VK_3);
-		requested_books.setLocation(950, 10);
+		requested_books.setLocation(990, 30);
 		requested_books.addActionListener(this);
 
-		history = new ButtonMaker("Images/requestedbooks.png", header, 75, 80);
+		history = new ButtonMaker("History",header, 260, 50);
 		history.setMnemonic(KeyEvent.VK_4);
-		history.setLocation(1200, 10);
+		history.setLocation(1260, 30);
 		history.addActionListener(this);
 
 		left_container = new JPanel(null);
