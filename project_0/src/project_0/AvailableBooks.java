@@ -1,18 +1,16 @@
 package project_0;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
 
-public class AvailableBooks extends JPanel{
+public class AvailableBooks extends JPanel implements ActionListener{
 
 	// Sample book database
 	Colors c = new Colors();
-	
-	String[] columns = { "books", "author", "quantity", "date added" };
-	String[][] data = { {"Harry Potter", "J.K. Rowling", "9823734", "1101,11,54"},
-			{"my lil pony", "Jess", "9823734", "1101,11,54"}};
 
 	JPanel right_container, center_container, center_container_header;
 	JLabel table_title;
@@ -20,6 +18,9 @@ public class AvailableBooks extends JPanel{
 	
 	JButton search_button, remove_button;
 	JTextField searchbar;
+	
+	ButtonMaker addbooks;
+	JTable table;
 
 	GridBagConstraints gbc = new GridBagConstraints();
 	public AvailableBooks() {
@@ -63,6 +64,11 @@ public class AvailableBooks extends JPanel{
 		clock.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
 		right_container.add(clock);
 		
+		addbooks = new ButtonMaker("add book", right_container, 150,50);
+		addbooks.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		addbooks.setLocation(50,500);
+		addbooks.addActionListener(this);
+		
 		center_container = new JPanel();
 		center_container.setLayout(new BorderLayout());
 		center_container.setBackground(c.charcoal_brown);
@@ -91,7 +97,10 @@ public class AvailableBooks extends JPanel{
 		remove_button.setBounds(650, 10, 100,20);
 		center_container_header.add(remove_button);
 
-		JTable table = new JTable(data,columns);
+		String[] table_header = { "Book Title", "Author", "Name", "Contact No.", "Borrowed Date" };
+		DefaultTableModel tbl = new DefaultTableModel(table_header, 0);
+		
+		table = new JTable(tbl);
 		table.setPreferredScrollableViewportSize(new Dimension(100,100));
 		table.setFillsViewportHeight(true);
 		//edit here for style
@@ -115,19 +124,23 @@ public class AvailableBooks extends JPanel{
 		String query = searchbar.getText().toLowerCase();
 		boolean found = false;
 
-		for (int i = 0; i < data.length; i++) {
-			if(data[i][0].toLowerCase().equalsIgnoreCase(query)) {
-				System.out.print("founds");
-				found = true;
+		
 				//data[1][2].getChars(i, i, null, i);
-				data[1][2] = "skibidi";
+				
 				//make it so that the scrollbar scrolls to the location of the book the user is searching for
-			}
-		}
 
 		if (!found) {
 			//please make JOptionPane isntead when no book is found
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(addbooks)) {
+			System.out.println("Button werk");
+		}
+		
 	}
 
 }
