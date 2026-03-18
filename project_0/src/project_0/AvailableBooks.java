@@ -101,6 +101,14 @@ public class AvailableBooks extends JPanel{
 	public void searchBooks() {
 		String query = searchbar.getText().toLowerCase();
 		boolean found = false;
+		 if (query.isEmpty()) {
+             JOptionPane.showMessageDialog(this, 
+             "Please enter a book name to search.", 
+             "Error", 
+             JOptionPane.ERROR_MESSAGE);
+          return;
+		 }
+	
 
 		for (int i = 0; i < data.length; i++) {
 			if(data[i][0].toLowerCase().equalsIgnoreCase(query)) {
@@ -109,12 +117,16 @@ public class AvailableBooks extends JPanel{
 				//data[1][2].getChars(i, i, null, i);
 				data[1][2] = "skibidi";
 				//make it so that the scrollbar scrolls to the location of the book the user is searching for
+				
 			}
 		}
 
 		if (!found) {
 			//please make JOptionPane isntead when no book is found
+			JOptionPane.showMessageDialog(this, 
+                    "Book not found.", 
+                    "Search Result", 
+                    JOptionPane.WARNING_MESSAGE);
 		}
 	}
-
 }
