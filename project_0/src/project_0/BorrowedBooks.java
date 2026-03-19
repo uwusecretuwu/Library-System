@@ -138,7 +138,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		lblbooktitle.setBounds(5, 45, 250, 30);
 		lblbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblbooktitle.setForeground(new Color(90, 30, 0));
-		txtbooktitle = new JTextField(10);
+		txtbooktitle = new JTextField();
 		txtbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		txtbooktitle.setBackground(new Color(245, 235, 210));
 		txtbooktitle.setBounds(5, 75, 220, 30);
@@ -147,7 +147,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		lblauthor.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblauthor.setForeground(new Color(90, 30, 0));
 		lblauthor.setBounds(5, 115, 250, 30);
-		txtauthor = new JTextField(10);
+		txtauthor = new JTextField();
 		txtauthor.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		txtauthor.setBackground(new Color(245, 235, 210));
 		txtauthor.setBounds(5, 145, 220, 30);
@@ -156,7 +156,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		lblname.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblname.setForeground(new Color(90, 30, 0));
 		lblname.setBounds(5, 190, 250, 30);
-		txtname = new JTextField(10);
+		txtname = new JTextField();
 		txtname.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		txtname.setBackground(new Color(245, 235, 210));
 		txtname.setBounds(5, 225, 220, 30);
@@ -165,7 +165,7 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		lblcontact.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		lblcontact.setForeground(new Color(90, 30, 0));
 		lblcontact.setBounds(5, 270, 250, 30);
-		txtcontact = new JTextField(10);
+		txtcontact = new JTextField();
 		txtcontact.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		txtcontact.setBackground(new Color(245, 235, 210));
 		txtcontact.setBounds(5, 305, 220, 30);
