@@ -2,6 +2,8 @@ package project_0;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -185,7 +187,7 @@ public class RequestBooks extends JPanel {
         String requesterName = requesterNameField.getText().trim();
         String contactNo = contactNoField.getText().trim();
         
-        History.addRequestedBooks(bookName, requesterName, contactNo);
+        History.addRequestedBooks(bookName, requesterName, contactNo, LocalDate.now().toString());
         
         if (bookName.isEmpty() || requesterName.isEmpty()) {
             JOptionPane.showMessageDialog(this, 

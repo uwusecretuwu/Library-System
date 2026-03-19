@@ -203,15 +203,18 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 			String name = txtname.getText();
 			String contact = txtcontact.getText();
 			String borrowed = lblborrowed2.getText();
-
 			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
 			if (titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Please fill in all fields.");
 				return;
 			}
+
+			if(!AvailableBooks.checkAvailable(titleText)) {
+				JOptionPane.showMessageDialog(this, "book does not exist");
+				return;
+			}
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addRow(new Object[] { titleText, author, name, contact, borrowed });
-
 			txtbooktitle.setText("");
 			txtauthor.setText("");
 			txtname.setText("");

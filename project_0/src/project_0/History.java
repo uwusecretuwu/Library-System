@@ -17,7 +17,7 @@ class History extends JPanel {
     Colors c = new Colors();
 
     private static JPanel borrowedPanel;
-    private JPanel availablePanel;
+    private static JPanel availablePanel;
     private static JPanel requestedPanel;
 
     History() {
@@ -84,8 +84,8 @@ class History extends JPanel {
         this.add(scrollPane, BorderLayout.CENTER);
         
         addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-        addAvailableBooks("fifty shades of grey", "E.L. James","100");
-        addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238" );
+        addAvailableBooks("fifty shades of grey", "E.L. James","100", "11/23/54");
+        addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238", "29-19-29");
     }
 
     private JPanel makeSectionHeader(String text, Color bgColor) {
@@ -145,7 +145,7 @@ class History extends JPanel {
         borrowedPanel.repaint();
     }
 
-    public void addAvailableBooks(String book, String Author, String quantity) {
+    public static void addAvailableBooks(String book, String Author, String quantity, String dateadded) {
         String title = "Available Books";
 
         JPanel panel = new JPanel();
@@ -159,6 +159,7 @@ class History extends JPanel {
         JLabel book2    = new JLabel("Book Title:"  + book + "");
         JLabel author2  = new JLabel("Author:"      + Author    + "");
         JLabel book_quantity = new JLabel("Quantity :" + quantity + "");
+        JLabel dateaddedlabel = new JLabel("date added :" + dateadded + "");
 
         Font f = new Font("Times New Roman", Font.PLAIN, 14);
         Color fg = new Color(40, 30, 20);
@@ -166,10 +167,12 @@ class History extends JPanel {
         book2.setFont(f);    book2.setForeground(fg);
         author2.setFont(f);  author2.setForeground(fg);
         book_quantity.setFont(f); book_quantity.setForeground(fg);
+        dateaddedlabel.setFont(f); dateaddedlabel.setForeground(fg);
 
         panel.add(book2);
         panel.add(author2);
         panel.add(book_quantity);
+        panel.add(dateaddedlabel);
 
         availablePanel.add(panel);
         availablePanel.add(makeSpacer(new Color(235, 255, 235)));
@@ -177,7 +180,7 @@ class History extends JPanel {
         availablePanel.repaint();
     }
 
-    public static void addRequestedBooks(String book, String Author, String Contactno) {
+    public static void addRequestedBooks(String book, String Author, String Contactno, String daterequested) {
         String title = "Requested Books";
 
         JPanel panel = new JPanel();
@@ -191,6 +194,7 @@ class History extends JPanel {
         JLabel book1    = new JLabel("Book Title:"  + book      + "");
         JLabel author1  = new JLabel("Author:"      + Author    + "");
         JLabel contact1 = new JLabel("Contact No.:" + Contactno + "");
+        JLabel daterequestedlabel = new JLabel("Date Requested: " + daterequested + "");
 
         Font f = new Font("Times New Roman", Font.PLAIN, 14);
         Color fg = new Color(40, 30, 20);
@@ -198,10 +202,12 @@ class History extends JPanel {
         book1.setFont(f);    book1.setForeground(fg);
         author1.setFont(f);  author1.setForeground(fg);
         contact1.setFont(f); contact1.setForeground(fg);
+        daterequestedlabel.setFont(f); daterequestedlabel.setForeground(fg);
 
         panel.add(book1);
         panel.add(author1);
         panel.add(contact1);
+        panel.add(daterequestedlabel);
 
         requestedPanel.add(panel);
         requestedPanel.add(makeSpacer(new Color(255, 240, 220)));
