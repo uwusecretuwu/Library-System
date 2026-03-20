@@ -108,7 +108,6 @@ class History extends JPanel {
 		panel.setBackground(c.saddle_brown);
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(c.deep_brown, 5),
 				BorderFactory.createLineBorder(panel.getBackground(), 10)));
-		panel.setPreferredSize(new Dimension(0, 50));
 		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 90));
 		panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
