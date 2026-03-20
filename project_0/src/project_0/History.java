@@ -55,6 +55,7 @@ class History extends JPanel {
 		historyPanel.setBorder(
 				BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 4, 4, 4, new Color(101, 67, 33)),
 						BorderFactory.createEmptyBorder(8, 10, 8, 10)));
+		
 		//centerContainer.add(historyPanel);
 
 		// ---- Available Books section ----
@@ -108,6 +109,8 @@ class History extends JPanel {
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(c.deep_brown, 5),
 				BorderFactory.createLineBorder(panel.getBackground(), 10)));
 		panel.setPreferredSize(new Dimension(0, 50));
+		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 90));
+		panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
 		JLabel book_label = new JLabel(book);
 		book_label.setBounds(15, 15, 800, 20);
@@ -149,7 +152,8 @@ class History extends JPanel {
 		panel.setBackground(c.dusty_olive);
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(c.charcoal_brown, 5),
 				BorderFactory.createLineBorder(panel.getBackground(), 10)));
-		panel.setPreferredSize(new Dimension(0, 50));
+		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 90));
+		panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
 		JLabel book_label = new JLabel(book);
 		book_label.setBounds(15, 15, 800, 20);
@@ -185,7 +189,8 @@ class History extends JPanel {
 		panel.setBackground(c.camel);
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(c.clay_creek, 5),
 				BorderFactory.createLineBorder(panel.getBackground(), 10)));
-		panel.setPreferredSize(new Dimension(0, 50));
+		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 90));
+		panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
 		JLabel book_label = new JLabel(book);
 		book_label.setBounds(15, 15, 800, 20);
