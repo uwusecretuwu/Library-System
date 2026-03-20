@@ -5,7 +5,8 @@ import java.awt.Color;
 public class Colors{
 	Color dark_walnut = new Color(88, 47, 14);
 	Color hunter_green = new Color(56, 102, 65);
-
+	Color deep_brown = new Color(90, 30, 0);
+	Color clay_creek = new Color(153, 88, 42);
 	Color saddle_brown = new Color(127, 79, 36);
 	Color tofee_brown = new Color(147, 102, 57);
 	Color coffee_bean = new Color(127, 85, 57);
@@ -15,6 +16,7 @@ public class Colors{
 	Color almond_cream = new Color(237, 224, 212);
 	Color dusty_olive = new Color(101, 109, 74);
 	Color ebony = new Color(65, 72, 51);
-	Color charcoal_brown = new Color(51, 61, 41);//
+	Color charcoal_brown = new Color(51, 61, 41);
+	Color corn_silk = new Color(255, 248, 235);
 	Color black = new Color(0,0,0);
 }

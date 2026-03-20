@@ -128,7 +128,7 @@ public class MWindow extends JFrame implements ActionListener {
 		book_cover = new JPanel(null);
 		book_cover.setBounds(0, 0, 450, 600);
 		book_cover.setBackground(new Color(153, 88, 42));
-		book_cover.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, almond_cream));
+		book_cover.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, c.corn_silk));
 		left_pane.add(book_cover);
 
 		book_mark = new JPanel();
@@ -142,7 +142,7 @@ public class MWindow extends JFrame implements ActionListener {
 		book_opener.addActionListener(this);
 		book_cover.add(book_opener);
 
-		book_cover_title = new JLabel("<html>Welcome back!<br/>...spread me</html>");
+		book_cover_title = new JLabel("Welcome back!");
 		book_cover_title.setFont(new Font("MV Boli", Font.PLAIN, 30));
 		book_cover_title.setBounds(50, 100, 350, 200);
 		book_cover_title.setBackground(new Color(0, 0, 0));
@@ -178,6 +178,7 @@ public class MWindow extends JFrame implements ActionListener {
 		center_container.add(rb);
 		center_container.add(h);
 
+		book_opener.setVisible(false);
 		book_page_content.setVisible(false);
 
 		this.add(left_container, BorderLayout.WEST);
@@ -198,6 +199,7 @@ public class MWindow extends JFrame implements ActionListener {
 				book_cover_title.setText(searchbar.getText());
 				search_info.setText("Book Found!");
 				book_cover.setVisible(true);
+				book_opener.setVisible(true);
 			} else {
 				search_info.setText("Book Not Found!");
 				System.out.println("that book does not exist!");

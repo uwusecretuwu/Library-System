@@ -9,6 +9,7 @@ import javax.swing.table.*;
 
 public class RequestBooks extends JPanel {
     
+	Colors c = new Colors();
     private JTable requestTable;
     private DefaultTableModel tableModel;
     private JTextField bookNameField, requesterNameField, contactNoField;
@@ -17,8 +18,7 @@ public class RequestBooks extends JPanel {
     RequestBooks() {
         this.setBounds(20, 60, 1040, 650);
         this.setLayout(new BorderLayout());
-        this.setBackground(new Color(0, 0, 0));
-        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, new Color(153, 88, 42)));
+        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, c.clay_creek));
         this.setVisible(false);
         
         // Header Panel
@@ -204,10 +204,6 @@ public class RequestBooks extends JPanel {
         requesterNameField.setText("");
         contactNoField.setText("");
         
-        JOptionPane.showMessageDialog(this, 
-            "Book request added successfully!", 
-            "Success", 
-            JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void addRequestToTable(String bookName, String requesterName, String contactNo) {

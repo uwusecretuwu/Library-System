@@ -18,8 +18,8 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 	JPanel rightpanel;
 	JPanel leftpanel;
 	JPanel header;
-	JLabel title, listtitle, lblbooktitle, lblauthor, lblname, lblcontact, lblborrowed, lblborrowed2;
-	JTextField txtbooktitle, txtauthor, txtname, txtcontact;
+	JLabel title, list_title, book_label, author_label, name_label, contact_label, lblborrowed, clock;
+	JTextField book_field, author_field, name_field, contact_field;
 	JButton btnadd, btnremove;
 	JTable table;
 
@@ -39,12 +39,12 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		top.add(title, BorderLayout.WEST);
 
 		btnadd = new JButton("ADD");
-		btnadd.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		btnadd.setBounds(15,380,200,30);
+		btnadd.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnadd.addActionListener(this);
-		btnadd.setBackground(new Color(245, 235, 210));
-		btnadd.setForeground(new Color(90, 30, 0));
+		btnadd.setBackground(new Color(90, 30, 0));
+		btnadd.setForeground(new Color(245, 235, 210));
 		btnadd.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 1));
-		btnadd.setPreferredSize(new Dimension(80, 30));
 
 		center = new JPanel();
 		center.setBackground(new Color(90, 30, 0));
@@ -57,28 +57,26 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		leftpanel.setBackground(new Color(245, 235, 210));
 		center.add(leftpanel, BorderLayout.CENTER);
 
-		header = new JPanel(new BorderLayout());
-		header.setBackground(new Color(245, 235, 210));
+		header = new JPanel(null);
+		header.setPreferredSize(new Dimension(0,40));
+		header.setBackground(c.saddle_brown);
 		leftpanel.add(header, BorderLayout.NORTH);
 
-		listtitle = new JLabel("List of Borrowed Books");
-		listtitle.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
-		listtitle.setForeground(new Color(90, 30, 0));
-		listtitle.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 0));
-		header.add(listtitle, BorderLayout.WEST);
+		list_title = new JLabel("List of Borrowed Books");
+		list_title.setBounds(0,0,500,40);
+		list_title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		list_title.setForeground(c.almond_cream);
+		list_title.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 0));
+		header.add(list_title);
 
 		btnremove = new JButton("REMOVE");
-		btnremove.setFont(new Font("Times New Roman", Font.BOLD, 8));
+		btnremove.setBounds(650, 10, 100, 20);
+		btnremove.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		btnremove.addActionListener(this);
-		btnremove.setBackground(new Color(90, 30, 0));
-		btnremove.setForeground(new Color(245, 235, 210));
-		btnremove.setPreferredSize(new Dimension(70, 30));
+		btnremove.setBackground(c.deep_brown);
+		btnremove.setForeground(c.almond_cream);
 
-		JPanel forbutton = new JPanel();
-		forbutton.setPreferredSize(new Dimension(80, 20));
-		forbutton.setOpaque(false);
-		forbutton.add(btnremove);
-		header.add(forbutton, BorderLayout.EAST);
+		header.add(btnremove);
 
 		String[] columntitlez = { "Book Title", "Author", "Name", "Contact No.", "Borrowed Date" };
 		DefaultTableModel tbl = new DefaultTableModel(columntitlez, 0);
@@ -88,9 +86,9 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		table.setBackground(new Color(245, 235, 210));
 		table.setRowHeight(28);
 		table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
-		table.getTableHeader().setBackground(new Color(245, 235, 210));
-		table.getTableHeader().setForeground(new Color(90, 30, 0));
-		table.setSelectionBackground(c.saddle_brown);
+		table.getTableHeader().setBackground(c.deep_brown);
+		table.getTableHeader().setForeground(c.almond_cream);
+		table.setSelectionBackground(c.camel);
 		table.setSelectionForeground(Color.BLACK);
 		table.setDefaultEditor(Object.class, null);
 		table.setGridColor(Color.gray);
@@ -113,74 +111,70 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		rightcenter.setPreferredSize(new Dimension(250, 300));
 		rightcenter.setBackground(new Color(245, 235, 210));
 
-		JPanel rightdown = new JPanel();
-		rightpanel.add(rightdown, BorderLayout.SOUTH);
-		rightdown.setBackground(new Color(245, 235, 210));
-
 		JPanel righttop = new JPanel();
 		rightpanel.add(righttop, BorderLayout.NORTH);
 		righttop.setPreferredSize(new Dimension(50, 38));
 		righttop.setBackground(new Color(245, 235, 210));
-		righttop.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 2));
+		righttop.setBorder(BorderFactory.createLineBorder(c.dark_walnut, 2));
 
 		JLabel addtitle = new JLabel("Add Borrowed Book");
 		addtitle.setFont(new Font("Times New Roman", Font.ITALIC | Font.BOLD, 20));
-		addtitle.setForeground(new Color(90, 30, 0));
+		addtitle.setForeground(c.dark_walnut);
 		righttop.add(addtitle);
 
 		rightcenter.setLayout(null);
-		lblborrowed2 = new JLabel();
-		lblborrowed2.setText(LocalDate.now().toString());
-		lblborrowed2.setForeground(new Color(90, 30, 0));
-		lblborrowed2.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblborrowed2.setBounds(130, 10, 220, 30);
-		lblbooktitle = new JLabel("BOOK TITLE");
-		lblbooktitle.setBounds(5, 45, 250, 30);
-		lblbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblbooktitle.setForeground(new Color(90, 30, 0));
-		txtbooktitle = new JTextField();
-		txtbooktitle.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		txtbooktitle.setBackground(new Color(245, 235, 210));
-		txtbooktitle.setBounds(5, 75, 220, 30);
-		txtbooktitle.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 1));
-		lblauthor = new JLabel("AUTHOR");
-		lblauthor.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblauthor.setForeground(new Color(90, 30, 0));
-		lblauthor.setBounds(5, 115, 250, 30);
-		txtauthor = new JTextField();
-		txtauthor.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		txtauthor.setBackground(new Color(245, 235, 210));
-		txtauthor.setBounds(5, 145, 220, 30);
-		txtauthor.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 1));
-		lblname = new JLabel("NAME");
-		lblname.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblname.setForeground(new Color(90, 30, 0));
-		lblname.setBounds(5, 190, 250, 30);
-		txtname = new JTextField();
-		txtname.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		txtname.setBackground(new Color(245, 235, 210));
-		txtname.setBounds(5, 225, 220, 30);
-		txtname.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 1));
-		lblcontact = new JLabel("CONTACT NUMBER");
-		lblcontact.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		lblcontact.setForeground(new Color(90, 30, 0));
-		lblcontact.setBounds(5, 270, 250, 30);
-		txtcontact = new JTextField();
-		txtcontact.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		txtcontact.setBackground(new Color(245, 235, 210));
-		txtcontact.setBounds(5, 305, 220, 30);
-		txtcontact.setBorder(BorderFactory.createLineBorder(new Color(90, 30, 0), 1));
+		clock = new JLabel();
+		clock.setText(LocalDate.now().toString());
+		clock.setForeground(new Color(90, 30, 0));
+		clock.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		clock.setBounds(130, 10, 220, 30);
+		book_label = new JLabel("BOOK TITLE");
+		book_label.setBounds(5, 45, 250, 30);
+		book_label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		book_label.setForeground(new Color(90, 30, 0));
+		book_field = new JTextField();
+		book_field.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		book_field.setBackground(new Color(245, 235, 210));
+		book_field.setBounds(5, 75, 220, 30);
+		book_field.setBorder(BorderFactory.createLineBorder(c.dark_walnut, 1));
+		author_label = new JLabel("AUTHOR");
+		author_label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		author_label.setForeground(new Color(90, 30, 0));
+		author_label.setBounds(5, 115, 250, 30);
+		author_field = new JTextField();
+		author_field.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		author_field.setBackground(new Color(245, 235, 210));
+		author_field.setBounds(5, 145, 220, 30);
+		author_field.setBorder(BorderFactory.createLineBorder(c.dark_walnut, 1));
+		name_label = new JLabel("NAME");
+		name_label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		name_label.setForeground(new Color(90, 30, 0));
+		name_label.setBounds(5, 190, 250, 30);
+		name_field = new JTextField();
+		name_field.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		name_field.setBackground(new Color(245, 235, 210));
+		name_field.setBounds(5, 225, 220, 30);
+		name_field.setBorder(BorderFactory.createLineBorder(c.dark_walnut, 1));
+		contact_label = new JLabel("CONTACT NUMBER");
+		contact_label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		contact_label.setForeground(new Color(90, 30, 0));
+		contact_label.setBounds(5, 270, 250, 30);
+		contact_field = new JTextField();
+		contact_field.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		contact_field.setBackground(new Color(245, 235, 210));
+		contact_field.setBounds(5, 305, 220, 30);
+		contact_field.setBorder(BorderFactory.createLineBorder(c.dark_walnut, 1));
 
-		rightcenter.add(lblbooktitle);
-		rightcenter.add(txtbooktitle);
-		rightcenter.add(lblauthor);
-		rightcenter.add(txtauthor);
-		rightcenter.add(lblname);
-		rightcenter.add(txtname);
-		rightcenter.add(lblcontact);
-		rightcenter.add(txtcontact);
-		rightcenter.add(lblborrowed2);
-		rightdown.add(btnadd);
+		rightcenter.add(book_label);
+		rightcenter.add(book_field);
+		rightcenter.add(author_label);
+		rightcenter.add(author_field);
+		rightcenter.add(name_label);
+		rightcenter.add(name_field);
+		rightcenter.add(contact_label);
+		rightcenter.add(contact_field);
+		rightcenter.add(clock);
+		rightcenter.add(btnadd);
 
 		side1 = new JPanel();
 		side1.setBackground(new Color(90, 30, 10));
@@ -198,33 +192,38 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnadd) {
-			String titleText = txtbooktitle.getText();
-			String author = txtauthor.getText();
-			String name = txtname.getText();
-			String contact = txtcontact.getText();
-			String borrowed = lblborrowed2.getText();
-			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
+			String titleText = book_field.getText();
+			String author = author_field.getText();
+			String name = name_field.getText();
+			String contact = contact_field.getText();
+			String borrowed = clock.getText();
 			if (titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Please fill in all fields.");
 				return;
 			}
 
-			if(!AvailableBooks.checkAvailable(titleText)) {
-				JOptionPane.showMessageDialog(this, "book does not exist");
+			if(AvailableBooks.checkAvailable(titleText) == 0) {
+				JOptionPane.showMessageDialog(this, "book copies have run out");
+				return;
+			} else if (AvailableBooks.checkAvailable(titleText) == -1) {
+				JOptionPane.showMessageDialog(this, "book not found");
 				return;
 			}
+			AvailableBooks.checkAvailable(titleText, false);
+			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
+			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addRow(new Object[] { titleText, author, name, contact, borrowed });
-			txtbooktitle.setText("");
-			txtauthor.setText("");
-			txtname.setText("");
-			txtcontact.setText("");
+			book_field.setText("");
+			author_field.setText("");
+			name_field.setText("");
+			contact_field.setText("");
 
 		} else if (e.getSource() == btnremove) {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			int selectedRow = table.getSelectedRow();
-
 			if (selectedRow != -1) {
+				AvailableBooks.checkAvailable(table.getValueAt(selectedRow, 0).toString(), true);
 				model.removeRow(selectedRow);
 			} else {
 				JOptionPane.showMessageDialog(this, "Please select a row to remove.");
