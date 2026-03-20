@@ -13,6 +13,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 	File files;
 
+	ImageIcon title_icon = new ImageIcon("C:\\Users\\Admin\\git\\Project-o\\project_0\\Images\\AlexandriaIcon.png");
 	JTextPane book_page_content = new JTextPane();
 
 	AvailableBooks ab = new AvailableBooks();
@@ -23,13 +24,6 @@ public class MWindow extends JFrame implements ActionListener {
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
 	Colors c = new Colors();
 	Images img = new Images();
-
-	// to be deleted
-	Color coffee_bean = new Color(127, 85, 57);
-	Color camel = new Color(166, 138, 100);
-	Color almond_cream = new Color(237, 224, 212);
-	Color dusty_olive = new Color(101, 109, 74);
-	Color ebony = new Color(65, 72, 51);
 
 	JPanel header, header_left, header_buttons,book_mark;
 	JLabel book_cover_title,searchbar_title;
@@ -50,13 +44,14 @@ public class MWindow extends JFrame implements ActionListener {
 		this.setSize(new Dimension(460, 730));
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setAlwaysOnTop(true);
+		this.setIconImage(title_icon.getImage());
 		this.getContentPane().setBackground(c.almond_cream);
 
 		// Panels
 		header = new JPanel(null);
 		header.setPreferredSize(new Dimension(0, 100));
-		header.setBackground(dusty_olive);
-		header.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, ebony));
+		header.setBackground(c.dusty_olive);
+		header.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, c.ebony));
 
 		searchbar = new JTextField();
 		searchbar.setBounds(100, 40, 200, 35);
@@ -70,54 +65,59 @@ public class MWindow extends JFrame implements ActionListener {
 		
 		searchbar_title = new JLabel("search");
 		searchbar_title.setBounds(150, 10, 100, 30);
-		searchbar_title.setBackground(c.camel);
+		searchbar_title.setBackground(c.coffee_bean);
+		searchbar_title.setForeground(c.almond_cream);
+		searchbar_title.setFont(new Font("Times New Roman", Font.ITALIC, 20));
 		searchbar_title.setOpaque(true);
 		searchbar_title.setHorizontalAlignment(SwingConstants.CENTER);
 		header.add(searchbar_title);
 
 		search_info = new JLabel();
 		search_info.setBounds(95, 75, 205, 20);
-		search_info.setBackground(almond_cream);
+		search_info.setBackground(c.almond_cream);
 		search_info.setOpaque(true);
 		search_info.setHorizontalAlignment(SwingConstants.CENTER);
 		header.add(search_info);
 
 		// books in the header
-		LabelMaker books = new LabelMaker("Images/requestedbooks.png");
-		books.labelmaker(header, 0, 0, 30, 95, coffee_bean);
+		PanelMaker books = new PanelMaker("Images/requestedbooks.png");
+		books.labelmaker(header, 0, 0, 30, 95, c.coffee_bean);
+		books.labelmaker(header, 30, 15, 30, 80, c.camel);
 		books.labelmaker(header, 300, 10, 30, 85, c.camel);
-		books.labelmaker(header, 330, 20, 20, 75, coffee_bean);
-		books.labelmaker(header, 350, 15, 20, 80, ebony);
-		books.labelmaker(header, 370, 10, 10, 85, coffee_bean);
-		books.labelmaker(header, 380, 30, 15, 65, ebony);
-		books.labelmaker(header, 395, 10, 15, 85, camel);
-		books.labelmaker(header, 425, 10, 10, 85, coffee_bean);
+		books.labelmaker(header, 330, 20, 20, 75, c.coffee_bean);
+		books.labelmaker(header, 350, 15, 20, 80, c.ebony);
+		books.labelmaker(header, 370, 10, 10, 85, c.coffee_bean);
+		books.labelmaker(header, 380, 30, 15, 65, c.ebony);
+		books.labelmaker(header, 395, 10, 15, 85, c.camel);
+		books.labelmaker(header, 410, 10, 10, 85, c.saddle_brown);
+		books.labelmaker(header, 420, 10, 25, 85, c.deep_brown);
 
 		// all the buttons on the header
 		//1080
-		available_books = new ButtonMaker("Available Books ",header, 260, 50);
+		available_books = new ButtonMaker("Available Books ",c.charcoal_brown, c.almond_cream,header, 260, 50);
 		available_books.setMnemonic(KeyEvent.VK_1);
 		available_books.setLocation(450, 30);
+		available_books.setBackground(c.charcoal_brown);
 		available_books.addActionListener(this);
 
-		borrowed_books = new ButtonMaker("Borrowed Books",header, 260, 50);
+		borrowed_books = new ButtonMaker("Borrowed Books",c.deep_brown, c.almond_cream,header, 260, 50);
 		borrowed_books.setMnemonic(KeyEvent.VK_2);
 		borrowed_books.setLocation(720, 30);
 		borrowed_books.addActionListener(this);
 
-		requested_books = new ButtonMaker("Requested Books",header, 260, 50);
+		requested_books = new ButtonMaker("Requested Books",c.clay_creek, c.almond_cream,header, 260, 50);
 		requested_books.setMnemonic(KeyEvent.VK_3);
 		requested_books.setLocation(990, 30);
 		requested_books.addActionListener(this);
 
-		history = new ButtonMaker("History",header, 260, 50);
+		history = new ButtonMaker("History",c.ebony, c.almond_cream,header, 260, 50);
 		history.setMnemonic(KeyEvent.VK_4);
 		history.setLocation(1260, 30);
 		history.addActionListener(this);
 
 		left_container = new JPanel(null);
 		left_container.setPreferredSize(new Dimension(450, 0));
-		left_container.setBackground(coffee_bean);
+		left_container.setBackground(c.coffee_bean);
 		left_container.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, new Color(0, 0, 0)));
 
 		left_pane = new JLayeredPane();
@@ -152,7 +152,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 		book_page = new JPanel(new BorderLayout());
 		book_page.setBounds(0, 0, 445, 595);
-		book_page.setBackground(almond_cream);
+		book_page.setBackground(c.almond_cream);
 		book_page.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 05, c.almond_cream));
 		left_pane.add(book_page);
 
@@ -170,9 +170,8 @@ public class MWindow extends JFrame implements ActionListener {
 
 		center_container = new JPanel(null);
 		center_container.setPreferredSize(new Dimension(450, 450));
-		center_container.setBackground(almond_cream);
+		center_container.setBackground(c.almond_cream);
 
-		// Adding things to the Window
 		center_container.add(ab);
 		center_container.add(bb);
 		center_container.add(rb);

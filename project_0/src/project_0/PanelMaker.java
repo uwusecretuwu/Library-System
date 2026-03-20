@@ -4,11 +4,11 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class LabelMaker {
+public class PanelMaker {
 	String img;
-	LabelMaker() {
+	PanelMaker() {
 	}
-	LabelMaker(String img) {
+	PanelMaker(String img) {
 		this.img=img;
 	}
 	public void labelmaker(Container cont, int x, int y, int width, int height,Color color) {

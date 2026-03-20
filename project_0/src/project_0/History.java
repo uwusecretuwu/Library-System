@@ -68,19 +68,9 @@ class History extends JPanel {
 
 		this.add(scrollPane, BorderLayout.CENTER);
 
-
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "11/23/4323");
-		addAvailableBooks("fifty shades of grey", "E.L. James", "100", "11/23/54");
-		addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238", "29-19-29");
+		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "1101-23-23");
+		addAvailableBooks("fifty shades of grey", "E.L. James", "100", "1154-23-54");
+		addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238", "2987-19-29");
 	}
 
 	private JPanel makeSectionHeader(String text, Color bgColor) {
@@ -108,7 +98,7 @@ class History extends JPanel {
 		panel.setBackground(c.saddle_brown);
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(c.deep_brown, 5),
 				BorderFactory.createLineBorder(panel.getBackground(), 10)));
-		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 1000));
+		panel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 90));
 		panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
 		JLabel book_label = new JLabel(book);
@@ -117,11 +107,11 @@ class History extends JPanel {
 		JLabel author_label = new JLabel("by: " + Author + "");
 		author_label.setBounds(25, 35, 800, 20);
 		JLabel borrower_label = new JLabel("Borrower: " + Borrower + "");
-		borrower_label.setBounds(20, 70, 800, 20);
+		borrower_label.setBounds(20, 60, 800, 20);
 		JLabel date_label = new JLabel(dateborrowed);
 		date_label.setBounds(890, 10, 500, 20);
 		JLabel contact_label = new JLabel("Contact No. " + Contactno + "");
-		contact_label.setBounds(780, 70, 500, 20);
+		contact_label.setBounds(780, 60, 500, 20);
 		
 		
 		book_label.setForeground(c.almond_cream);

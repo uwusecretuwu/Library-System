@@ -109,10 +109,8 @@ public class AvailableBooks extends JPanel implements ActionListener {
 		clock.setForeground(c.charcoal_brown);
 		right_container.add(clock);
 
-		add_books = new ButtonMaker("ADD", right_container, 200, 30);
+		add_books = new ButtonMaker("ADD",c.charcoal_brown, c.almond_cream, right_container, 200, 30);
 		add_books.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		add_books.setBackground(c.charcoal_brown);
-		add_books.setForeground(c.almond_cream);
 		add_books.setLocation(25, 400);
 		add_books.addActionListener(this);
 
