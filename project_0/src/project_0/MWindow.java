@@ -14,7 +14,7 @@ public class MWindow extends JFrame implements ActionListener {
 	File files;
 
 	ImageIcon title_icon = new ImageIcon("C:\\Users\\Admin\\git\\Project-o\\project_0\\Images\\AlexandriaIcon.png");
-	JTextPane book_page_content = new JTextPane();
+	static JTextPane book_page_content = new JTextPane();
 
 	AvailableBooks ab = new AvailableBooks();
 	BorrowedBooks bb = new BorrowedBooks();
@@ -23,7 +23,6 @@ public class MWindow extends JFrame implements ActionListener {
 
 	ButtonMaker available_books, borrowed_books, requested_books, history, notification_button;
 	Colors c = new Colors();
-	Images img = new Images();
 
 	JPanel header, header_left, header_buttons,book_mark;
 	JLabel book_cover_title,searchbar_title;
@@ -206,7 +205,7 @@ public class MWindow extends JFrame implements ActionListener {
 
 		} else if (e.getSource().equals(book_opener) && files.exists()) {
 			try {
-				Main.getFileName(files);
+				Filer.getFileName(files);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

@@ -174,7 +174,7 @@ public class RequestBooks extends JPanel {
             }
         });
         
-        // Add sample data
+        // sample data
         addRequestToTable("Math", "Angelica", "9382827234");
         
         // Add components to main panel
@@ -183,10 +183,12 @@ public class RequestBooks extends JPanel {
     }
     
     private void addRequest() {
+    	// trims the text in case user has typed in too many white spaces
         String bookName = bookNameField.getText().trim();
         String requesterName = requesterNameField.getText().trim();
         String contactNo = contactNoField.getText().trim();
         
+        //adds the book, requester, contact no, if provided, and the date it was requested to the history
         History.addRequestedBooks(bookName, requesterName, contactNo, LocalDate.now().toString());
         
         if (bookName.isEmpty() || requesterName.isEmpty()) {

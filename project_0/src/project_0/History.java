@@ -42,13 +42,10 @@ class History extends JPanel {
 		header.add(title, BorderLayout.WEST);
 		this.add(header, BorderLayout.NORTH);
 
-		// center container
 		JPanel centerContainer = new JPanel();
 		centerContainer.setLayout(new BoxLayout(centerContainer, BoxLayout.Y_AXIS));
 		centerContainer.setBackground(new Color(242, 236, 222));
 
-		// ---- Borrowed Books section ----
-		centerContainer.add(makeSectionHeader("  BORROWED BOOKS", new Color(101, 67, 33)));
 		historyPanel = new JPanel();
 		historyPanel.setLayout(new BoxLayout(historyPanel, BoxLayout.Y_AXIS));
 		historyPanel.setBackground(c.corn_silk);
@@ -56,10 +53,6 @@ class History extends JPanel {
 				BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 4, 4, 4, new Color(101, 67, 33)),
 						BorderFactory.createEmptyBorder(8, 10, 8, 10)));
 		
-		//centerContainer.add(historyPanel);
-
-		// ---- Available Books section ----
-
 		JScrollPane scrollPane = new JScrollPane(historyPanel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -68,23 +61,12 @@ class History extends JPanel {
 
 		this.add(scrollPane, BorderLayout.CENTER);
 
+		//example data
 		addBorrowedBooks("Harry Potter", "J.K. Rowling", "Jessika", "0992378617348", "1101-23-23");
 		addAvailableBooks("fifty shades of grey", "E.L. James", "100", "1154-23-54");
 		addRequestedBooks("Diary of the Wimpy kid", "Abril", "099236178238", "2987-19-29");
 	}
-
-	private JPanel makeSectionHeader(String text, Color bgColor) {
-		JPanel bar = new JPanel(new BorderLayout());
-		bar.setBackground(bgColor);
-		bar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 36));
-		bar.setBorder(BorderFactory.createEmptyBorder(5, 12, 5, 12));
-		JLabel lbl = new JLabel(text);
-		lbl.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lbl.setForeground(Color.WHITE);
-		bar.add(lbl, BorderLayout.WEST);
-		return bar;
-	}
-
+	// creates a space between panels
 	private static JPanel makeSpacer(Color bg) {
 		JPanel spacer = new JPanel();
 		spacer.setBackground(bg);

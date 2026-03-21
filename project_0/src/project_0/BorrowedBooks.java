@@ -1,7 +1,9 @@
 package project_0;
 
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.*;
+import java.awt.RenderingHints.Key;
 import java.awt.event.*;
 import javax.swing.table.*;
 import java.time.LocalDate;
@@ -77,14 +79,18 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		btnremove.setForeground(c.almond_cream);
 
 		header.add(btnremove);
-
+		
 		String[] columntitlez = { "Book Title", "Author", "Name", "Contact No.", "Borrowed Date" };
 		DefaultTableModel tbl = new DefaultTableModel(columntitlez, 0);
+		
+		DefaultTableCellRenderer cell_centerer = new DefaultTableCellRenderer();
+		cell_centerer.setHorizontalAlignment(JLabel.CENTER);
 
 		table = new JTable(tbl);
 		table.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		table.setBackground(new Color(245, 235, 210));
 		table.setRowHeight(28);
+		table.getColumn("Borrowed Date").setCellRenderer(cell_centerer);
 		table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
 		table.getTableHeader().setBackground(c.deep_brown);
 		table.getTableHeader().setForeground(c.almond_cream);
@@ -187,7 +193,6 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		add(down, BorderLayout.SOUTH);
 
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -197,21 +202,28 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 			String name = name_field.getText();
 			String contact = contact_field.getText();
 			String borrowed = clock.getText();
+			//checks if the user has input any text, if not then it will return an error message
 			if (titleText.isEmpty() || author.isEmpty() || name.isEmpty() || contact.isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Please fill in all fields.");
 				return;
 			}
 
-			if(AvailableBooks.checkAvailable(titleText) == 0) {
-				JOptionPane.showMessageDialog(this, "book copies have run out");
-				return;
-			} else if (AvailableBooks.checkAvailable(titleText) == -1) {
+			// checks if book exists
+			if(AvailableBooks.checkAvailable(titleText) == -1) {
 				JOptionPane.showMessageDialog(this, "book not found");
 				return;
+			} 
+			// check if book has available copies
+			else if (AvailableBooks.checkAvailable(titleText) == 0) {
+				JOptionPane.showMessageDialog(this, "book copies have run out");
+				return;
 			}
+			//the book is borrowed and subtracted from the system in Available Books
 			AvailableBooks.checkAvailable(titleText, false);
+			//adds the name of the book, author, borrower, contact number, and when the book was borrowed to history
 			History.addBorrowedBooks(titleText, author, name, contact, borrowed);
 			
+			//empties the text field for the next book to be borrowed
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addRow(new Object[] { titleText, author, name, contact, borrowed });
 			book_field.setText("");
@@ -222,7 +234,9 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 		} else if (e.getSource() == btnremove) {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			int selectedRow = table.getSelectedRow();
+			//checks if user has selected a row
 			if (selectedRow != -1) {
+				// finds the book borrowed and adds it back to the system
 				AvailableBooks.checkAvailable(table.getValueAt(selectedRow, 0).toString(), true);
 				model.removeRow(selectedRow);
 			} else {

@@ -23,29 +23,29 @@ public class AvailableBooks extends JPanel implements ActionListener {
 			{ "Weight of Ink", "Rachel Kadish", "2", "2020-8-9" } };
 
 	DefaultTableModel table_model;
-	DefaultTableCellRenderer cellR;
+	DefaultTableCellRenderer cell_centerer;
 	TableRowSorter row_sorter;
 
-	JPanel right_container, center_container, center_container_header, right_header;
-	JLabel table_title, right_header_title, book_title, author_title, quantity_title, clock;
+	JPanel header, right_container, center_container, center_container_header, right_header;
+	JLabel title, table_title, right_header_title, book_title, author_title, quantity_title, clock;
 	JTextField searchbar, book_field, author_field;
 	JButton search_button, remove_button;
 	ButtonMaker add_books;
 	JSpinner quantity_field;
 
 	public AvailableBooks() {
-
+		// sets the size and border of the Available Books Panel
 		this.setBounds(20, 60, 1040, 650);
 		this.setLayout(new BorderLayout());
 		this.setVisible(false);
 		this.setBorder(BorderFactory.createMatteBorder(0, 10, 10, 10, c.charcoal_brown));
 
-		JPanel header = new JPanel();
+		header = new JPanel();
 		header.setLayout(new BorderLayout());
 		header.setPreferredSize(new Dimension(0, 70));
 		header.setBackground(c.charcoal_brown);
 
-		JLabel title = new JLabel(" AVAILABLE BOOKS");
+		title = new JLabel(" AVAILABLE BOOKS");
 		title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));
 		title.setForeground(c.almond_cream);
 
@@ -129,6 +129,7 @@ public class AvailableBooks extends JPanel implements ActionListener {
 		searchbar.setBounds(10, 10, 250, 20);
 		center_container_header.add(searchbar);
 
+		//adds a search button
 		search_button = new JButton("SEARCH");
 		search_button.setBounds(270, 10, 100, 20);
 		search_button.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -148,14 +149,16 @@ public class AvailableBooks extends JPanel implements ActionListener {
 		String[] table_header = { "Book Title", "Author", "Quantity", "Borrowed Date" };
 		table_model = new DefaultTableModel(datas, table_header);
 		row_sorter = new TableRowSorter(table_model);
-		cellR = new DefaultTableCellRenderer();
-		cellR.setHorizontalAlignment(JLabel.CENTER);
+		cell_centerer = new DefaultTableCellRenderer();
+		cell_centerer.setHorizontalAlignment(JLabel.CENTER);
 
 		table = new JTable(table_model);
 		table.setPreferredScrollableViewportSize(new Dimension(100, 100));
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getColumnModel().getColumn(3).setCellRenderer(cell_centerer);
 		table.setFillsViewportHeight(true);
 		table.setRowSorter(row_sorter);
-		// edit here for style
+		//sets the style of the table
 		table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
 		table.getTableHeader().setBackground(c.charcoal_brown);
 		table.getTableHeader().setForeground(c.almond_cream);
@@ -171,6 +174,7 @@ public class AvailableBooks extends JPanel implements ActionListener {
 		this.add(center_container, BorderLayout.CENTER);
 		this.add(header, BorderLayout.NORTH);
 
+		// checks searchbar field changes
 		searchbar.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				changed();
@@ -185,6 +189,7 @@ public class AvailableBooks extends JPanel implements ActionListener {
 			}
 
 			public void changed() {
+				//if the field is empty resort back to default layout
 				if (searchbar.getText().equals("")) {
 					System.out.println("changed");
 					row_sorter.setRowFilter(new customTableSorter(searchbar.getText()));
@@ -193,16 +198,13 @@ public class AvailableBooks extends JPanel implements ActionListener {
 			}
 		});
 	}
-
 	public static int checkAvailable(String book) {
-		
-		// 0 = check only if book is available
-		// 1 = find the book and borrow
-		// 2 = find the book and return it
+		//checks every row
 		for (int i = 0; i < table.getRowCount(); i++) {
-			// found the book
+			// checks if the book at this row matches the name of the book to be checked
 			if (book.equalsIgnoreCase(table.getValueAt(i, 0).toString().toLowerCase())) {
 				int quantity = Integer.parseInt(table.getValueAt(i, 2).toString().toLowerCase());
+				//checks if there are any available copies of the book
 				if(quantity == 0) {
 					return quantity;
 				}
@@ -231,34 +233,38 @@ public static int checkAvailable(String book, boolean add) {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(add_books)) {
-			System.out.println("Button weork");
 			if (book_field.getText().isEmpty() || author_field.getText().isEmpty()
 					|| quantity_field.getValue().toString().isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Please fill in all fields.");
 				return;
 			}
+			//adds new available row with the specified values
 			table_model.addRow(new Object[] { book_field.getText(), author_field.getText(), quantity_field.getValue(),
 					clock.getText() });
-			table.getColumnModel().getColumn(table.getColumnCount() - 1).setCellRenderer(cellR);
 
+			//takes the the datas the user submitted to the textfield and adds it to history logs
 			History.addAvailableBooks(book_field.getText(), author_field.getText(), quantity_field.getValue().toString(),
 					clock.getText());
-
+			//clears the text field for the next book to be available
 			book_field.setText("");
 			author_field.setText("");
 			quantity_field.setValue(0);
 		} else if (e.getSource().equals(remove_button)) {
+			//if row is not selected then display error message
 			if (table.getSelectedRow() == -1) {
 				JOptionPane.showMessageDialog(this, "please select a row to remove");
 				return;
 			}
+			//remove the selected row
 			table_model.removeRow(table.getSelectedRow());
 		} else if (e.getSource().equals(search_button)) {
+			//if the searchbar field is empty then return an error message
 			if (searchbar.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Please enter a book name to search.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			// if the searchbar field is not empty then only show the datas that match the name of what is inside the textfield, capitalized or not.
 			row_sorter.setRowFilter(new customTableSorter(searchbar.getText().toLowerCase()));
 		}
 	}
