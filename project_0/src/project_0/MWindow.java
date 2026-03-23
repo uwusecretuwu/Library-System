@@ -130,17 +130,6 @@ public class MWindow extends JFrame implements ActionListener {
 		book_cover.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, c.corn_silk));
 		left_pane.add(book_cover);
 
-		book_mark = new JPanel();
-		book_mark.setBounds(400, 0, 20, 60);
-		book_mark.setBackground(new Color(153, 39, 11));
-		book_mark.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(67, 17, 5)));
-		book_cover.add(book_mark);
-
-		book_opener = new JButton("Open");
-		book_opener.setBounds(300, 550, 100, 30);
-		book_opener.addActionListener(this);
-		book_cover.add(book_opener);
-
 		book_cover_title = new JLabel("Welcome back!");
 		book_cover_title.setFont(new Font("MV Boli", Font.PLAIN, 30));
 		book_cover_title.setBounds(50, 100, 350, 200);
@@ -159,6 +148,18 @@ public class MWindow extends JFrame implements ActionListener {
 		book_page_content.setEditable(false);
 		book_page_content.setMargin(new Insets(10, 20, 10, 10));
 		book_page_content.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 13));
+
+		book_opener = new JButton("Open");
+		book_opener.setBounds(300, 550, 100, 30);
+		book_opener.addActionListener(this);
+		book_cover.add(book_opener);
+		
+		book_mark = new JPanel();
+		book_mark.setBounds(400, 0, 20, 60);
+		book_mark.setBackground(new Color(153, 39, 11));
+		book_mark.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(67, 17, 5)));
+		book_cover.add(book_mark);
+
 
 		scroll = new JScrollPane(book_page_content);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -190,8 +191,6 @@ public class MWindow extends JFrame implements ActionListener {
 		if (e.getSource().equals(searchbar_button) && !searchbar.getText().isEmpty()) {
 			String file = searchbar.getText().toLowerCase();
 			files = new File("books/" + file + ".txt");
-			String file_book_name = files.getName();
-			System.out.println(file_book_name); // debug
 			if (files.exists()) {
 				System.out.println(files.exists()); // check
 				book_cover_title.setText(searchbar.getText());
@@ -200,7 +199,6 @@ public class MWindow extends JFrame implements ActionListener {
 				book_opener.setVisible(true);
 			} else {
 				search_info.setText("Book Not Found!");
-				System.out.println("that book does not exist!");
 			}
 
 		} else if (e.getSource().equals(book_opener) && files.exists()) {
@@ -209,7 +207,6 @@ public class MWindow extends JFrame implements ActionListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			System.out.println("book is opened");
 			book_page_content.setVisible(true);
 			book_cover.setVisible(false);
 		} else if (e.getSource().equals(available_books)) {

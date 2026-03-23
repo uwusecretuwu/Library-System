@@ -12,7 +12,6 @@ import javax.swing.text.StyleConstants;
 
 public class Filer {
 	
-	static String book_to_search;
 	static String finished_line;
 	
 	public static void getFileName(File files) throws IOException {

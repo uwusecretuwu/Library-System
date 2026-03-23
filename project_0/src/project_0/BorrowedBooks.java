@@ -1,10 +1,9 @@
 package project_0;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.*;
-import java.awt.RenderingHints.Key;
-import java.awt.event.*;
 import javax.swing.table.*;
 import java.time.LocalDate;
 
@@ -27,12 +26,12 @@ public class BorrowedBooks extends JPanel implements ActionListener {
 
 	public BorrowedBooks() {
 
-		this.setBounds(20, 60, 1040, 650);
+		setBounds(20, 60, 1040, 650);
 		setLayout(new BorderLayout());
 		top = new JPanel(new BorderLayout());
-		add(top, BorderLayout.NORTH);
 		top.setBackground(new Color(90, 30, 0));
 		top.setPreferredSize(new Dimension(20, 70));
+		add(top, BorderLayout.NORTH);
 
 		title = new JLabel("BORROWED BOOKS");
 		title.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 35));

@@ -17,8 +17,6 @@ class History extends JPanel {
 	private static Colors c = new Colors();
 
 	private static JPanel historyPanel;
-	private static JPanel availablePanel;
-	private static JPanel requestedPanel;
 	
 	static Font f = new Font("Times New Roman", Font.PLAIN, 16);
 
